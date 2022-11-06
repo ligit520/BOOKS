@@ -1,9 +1,10 @@
-自己编写的python教程
+自己参考网络资料编写的python教程，侵删
 
 > 参考：
 >
 > - https://github.com/walter201230/Python
 > - https://www.runoob.com/python3/python3-tutorial.html
+> - 看漫画学python
 
 **主要目录如下：**
 
@@ -11,17 +12,24 @@
 
 # 1. Python简介
 
-Python 是著名的“龟叔” Guido van Rossum 在 1989 年圣诞节期间，为了打发无聊的圣诞节而编写的一个编程语言。
+Python 是著名的“龟叔” Guido van Rossum 在 1989 年圣诞节期间，为了打发无聊的圣诞节而编写的一个编程语言。国内社区通常将Guido van Rossum简称为“龟叔”，“龟”的发音取自Guido中的“Gui”。
+
+<img src="C:\Users\李雅\AppData\Roaming\Typora\typora-user-images\image-20221106222457511.png" alt="image-20221106222457511" style="zoom: 25%;" />
+
+Python的历史大致如下。目前通用的是python3版本。
+
+<img src="C:\Users\李雅\AppData\Roaming\Typora\typora-user-images\image-20221106222741751.png" alt="image-20221106222741751" style="zoom:33%;" />
 
 Python 是高级编程语言，它有一个特点就是能快速的开发。Python 为我们提供了非常完善的基础代码库，覆盖了网络、文件、GUI、数据库、文本等大量内容，被形象地称作“内置电池（batteries included）”。用 Python 开发，许多功能不必从零编写，直接使用现成的即可。而且 Python 还能开发网站，多大型网站就是用 Python 开发的，例如 YouTube、Instagram，还有国内的豆瓣。很多大公司，包括 Google、Yahoo 等，甚至 NASA（美国航空航天局）都大量地使用 Python。
 
 当然，任何编程语言有有点，也有缺点，Python 也不例外。那么 Python 有哪些缺点呢？
 
-第一个缺点就是运行速度慢，和C程序相比非常慢，因为Python是解释型语言，你的代码在执行时会一行一行地翻译成CPU能理解的机器码，这个翻译过程非常耗时，所以很慢。而C程序是运行前直接编译成CPU能执行的机器码，所以非常快。
-
-第二个缺点就是代码不能加密。如果要发布你的 Python 程序，实际上就是发布源代码。像 JAVA , C 这些编译型的语言，都没有这个问题，而解释型的语言，则必须把源码发布出去。
+- 第一个缺点就是运行速度慢，和C程序相比非常慢，因为Python是解释型语言，你的代码在执行时会一行一行地翻译成CPU能理解的机器码，这个翻译过程非常耗时，所以很慢。而C程序是运行前直接编译成CPU能执行的机器码，所以非常快。
+- 第二个缺点就是代码不能加密。如果要发布你的 Python 程序，实际上就是发布源代码。像 JAVA , C 这些编译型的语言，都没有这个问题，而解释型的语言，则必须把源码发布出去。
 
 # 2. Python的安装
+
+
 
 ## Windows下的安装
 
@@ -74,6 +82,8 @@ python hello.py
 # 5. Python 中的变量 #
 
 ## 1. 变量的创建和赋值 ##
+
+在Python中为一个变量赋值的同时就声明了该变量，该变量的数据类型就是赋值数据所属的类型，该变量还可以接收其他类型的数据。
 
 在 Python 程序中，变量是用一个变量名表示，可以是任意数据类型，变量名必须是大小写英文、数字和下划线（_）的组合，且不能用数字开头，比如：
 
@@ -207,11 +217,21 @@ a = 100.1
 
 
 
+## 复数类型
+
+整数和浮点数（小数）在数学中被统称为实数。与实数对应的是复数，复数在数学中被表示为：a+bi，其中a被称为实部，b被称为虚部，i被称为虚数单位。复数在数学、理论物理学和电气工程等方面应用广泛，例如向量就可以使用复数表示。
+
+<img src="C:\Users\李雅\AppData\Roaming\Typora\typora-user-images\image-20221106224424410.png" alt="image-20221106224424410" style="zoom: 50%;" />
+
+
+
 ## 字符串
 
-string 使用‘ ’ 或者“ ”括起来的
+string 使用‘ ’ 或者“ ”括起来的元素
 
 ### 字符串创建
+
+<img src="C:\Users\李雅\AppData\Roaming\Typora\typora-user-images\image-20221106232845582.png" alt="image-20221106232845582" style="zoom: 33%;" />
 
 字符串：双引号或者单引号中的数据
 
@@ -270,44 +290,49 @@ print(name[0:3]) # 取 下标0~2 的字符
 
 ### 字符串的常见操作
 
-| 函数       | 用法                                                         | 说明                                                         |
-| ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| find       | mystr.find(str, start=0, end=len(mystr))                     | 检测 str 是否包含在 mystr中，如果是返回开始的索引值，否则返回-1 |
-| rfind      | mystr.rfind(str, start=0,end=len(mystr) )                    | 类似于 find()函数，不过是从右边开始查找.                     |
-| index      | mystr.index(str, start=0, end=len(mystr))                    | str是否在mystr中                                             |
-| rindex     | mystr.rindex( str, start=0,end=len(mystr))                   | 类似于 index()，不过是从右边开始.                            |
-| count      | mystr.count(str, start=0, end=len(mystr))                    | 返回 str在start和end之间 在 mystr里面出现的次数              |
-| replace    | mystr.replace(str1, str2,  mystr.count(str1))                | 把 mystr 中的 str1 替换成 str2,如果 count 指定，则替换不超过 count 次 |
-| split      | mystr.split(str=" ", 2)                                      | 以 str 为分隔符切片 mystr，如果 maxsplit有指定值，则仅分隔 maxsplit 个子字符串 |
-| capitalize | mystr.capitalize()                                           | 把字符串的第一个字符大写                                     |
-| title      | mystr.title()                                                | 把字符串的每个单词首字母大写                                 |
-| startswith | mystr.startswith(obj)                                        | 检查字符串是否是以 obj 开头, 是则返回 True，否则返回 False   |
-| endswith   | mystr.endswith(obj)                                          | 检查字符串是否以obj结束，如果是返回True,否则返回 False.      |
-| lower      | mystr.lower()                                                | 转换 mystr 中所有大写字符为小写                              |
-| upper      | mystr.upper()                                                | 转换 mystr 中的小写字母为大写                                |
-| ljust      | mystr.ljust(width)                                           | 返回一个原字符串左对齐,并使用空格填充至长度 width 的新字符串 |
-| rjust      | mystr.rjust(width)                                           | 返回一个原字符串右对齐,并使用空格填充至长度 width 的新字符串 |
-| center     | mystr.center(width)                                          | 返回一个原字符串居中,并使用空格填充至长度 width 的新字符串   |
-| lstrip     | mystr.lstrip()                                               | 删除 mystr 左边的空白字符                                    |
-| rstrip     | mystr.rstrip()                                               | 删除 mystr 字符串末尾的空白字符                              |
-| strip      | mystr.strip()                                                | 删除mystr字符串两端的空白字符                                |
-| partition  | mystr.partition(str)                                         | 把mystr以str分割成三部分,str前，str和str后                   |
-| rpartition | mystr.rpartition(str)                                        | 类似于 partition()函数,不过是从右边开始.                     |
-| splitlines | mystr.splitlines()                                           | 按照行分隔，返回一个包含各行作为元素的列表                   |
-| isalpha    | mystr.isalpha()                                              | 如果 mystr 所有字符都是字母 则返回 True,否则返回 False       |
-| isdigit    | mystr.isdigit()                                              | 如果 mystr 只包含数字则返回 True 否则返回 False              |
-| isalnum    | mystr.isalnum()                                              | 如果 mystr 所有字符都是字母或数字则返回 True,否则返回 False  |
-| isspace    | mystr.isspace()                                              | 如果 mystr 中只包含空格，则返回 True，否则返回 False.        |
-| join       | mystr.join(str)                                              | mystr 中每个字符后面插入str,构造出一个新的字符串             |
-|            | [max(str)](https://www.runoob.com/python/att-string-max.html) | 返回字符串 *str* 中最大的字母。                              |
-|            | [min(str)](https://www.runoob.com/python/att-string-min.html) | 返回字符串 *str* 中最小的字母。                              |
-|            |                                                              |                                                              |
+| 函数                                          | 说明                                                         |
+| --------------------------------------------- | ------------------------------------------------------------ |
+| mystr.find(str, start=0, end=len(mystr))      | 检测 str 是否包含在 mystr中，如果是返回开始的索引值，否则返回-1 |
+| mystr.rfind(str, start=0,end=len(mystr) )     | 类似于 find()函数，不过是从右边开始查找.                     |
+| mystr.index(str, start=0, end=len(mystr))     | str是否在mystr中                                             |
+| mystr.rindex( str, start=0,end=len(mystr))    | 类似于 index()，不过是从右边开始.                            |
+| mystr.count(str, start=0, end=len(mystr))     | 返回 str在start和end之间 在 mystr里面出现的次数              |
+| mystr.replace(str1, str2,  mystr.count(str1)) | 把 mystr 中的 str1 替换成 str2,如果 count 指定，则替换不超过 count 次 |
+| mystr.split(str=" ", 2)                       | 以 str 为分隔符切片 mystr，如果 maxsplit有指定值，则仅分隔 maxsplit 个子字符串 |
+| mystr.capitalize()                            | 把字符串的第一个字符大写                                     |
+| mystr.title()                                 | 把字符串的每个单词首字母大写                                 |
+| mystr.startswith(obj)                         | 检查字符串是否是以 obj 开头, 是则返回 True，否则返回 False   |
+| mystr.endswith(obj)                           | 检查字符串是否以obj结束，如果是返回True,否则返回 False.      |
+| mystr.lower()                                 | 转换 mystr 中所有大写字符为小写                              |
+| mystr.upper()                                 | 转换 mystr 中的小写字母为大写                                |
+| mystr.ljust(width)                            | 返回一个原字符串左对齐,并使用空格填充至长度 width 的新字符串 |
+| mystr.rjust(width)                            | 返回一个原字符串右对齐,并使用空格填充至长度 width 的新字符串 |
+| mystr.center(width)                           | 返回一个原字符串居中,并使用空格填充至长度 width 的新字符串   |
+| mystr.lstrip()                                | 删除 mystr 左边的空白字符                                    |
+| mystr.rstrip()                                | 删除 mystr 字符串末尾的空白字符                              |
+| mystr.strip()                                 | 删除mystr字符串两端的空白字符                                |
+| mystr.partition(str)                          | 把mystr以str分割成三部分,str前，str和str后                   |
+| mystr.rpartition(str)                         | 类似于 partition()函数,不过是从右边开始.                     |
+| mystr.splitlines()                            | 按照行分隔，返回一个包含各行作为元素的列表                   |
+| mystr.isalpha()                               | 如果 mystr 所有字符都是字母 则返回 True,否则返回 False       |
+| mystr.isdigit()                               | 如果 mystr 只包含数字则返回 True 否则返回 False              |
+| mystr.isalnum()                               | 如果 mystr 所有字符都是字母或数字则返回 True,否则返回 False  |
+| mystr.isspace()                               | 如果 mystr 中只包含空格，则返回 True，否则返回 False.        |
+| mystr.join(str)                               | mystr 中每个字符后面插入str,构造出一个新的字符串             |
+| max(str)                                      | 返回字符串 *str* 中最大的字母。                              |
+| min(str)                                      | 返回字符串 *str* 中最小的字母。                              |
+| 加（+）                                       | 加（+）运算符可以将两个序列连接起来，                        |
+| 乘（*）                                       | 乘（*）运算符可以将两个序列重复多次。                        |
+| in                                            | 元素在str中返回True                                          |
+| not in                                        | 元素不在str中返回True                                        |
 
 
 
 ## bool
 
 Python 中，可以直接用 True、False 表示布尔值（请注意大小写）
+
+False : 0,' ',[],{},
 
 布尔值可以用 `and`、`or` 和 `not` 运算。
 
@@ -390,7 +415,9 @@ type(<object>)用于判断对象的类型，返回结果可为str、int、float�
 | **     |   幂   | 返回x的y次幂 a**b 为10的20次方， 输出结果 100000000000000000000 |
 | //     | 取整除 | 返回商的整数部分 9//2 输出结果 4 , 9.0//2.0 输出结果 4.0     |
 
+## 赋值运算符
 
+<img src="C:\Users\李雅\AppData\Roaming\Typora\typora-user-images\image-20221106225325442.png" alt="image-20221106225325442" style="zoom:50%;" />
 
 ## 关系运算符
 
@@ -418,6 +445,20 @@ python中的比较运算符如下表
 
 
 
+## 位运算符
+
+位运算是以二进位（bit）为单位进行运算的，操作数和结果都是整数类型的数据。
+
+<img src="C:\Users\李雅\AppData\Roaming\Typora\typora-user-images\image-20221106225032012.png" alt="image-20221106225032012" style="zoom: 25%;" />
+
+
+
+## 运算符的优先级
+
+<img src="C:\Users\李雅\AppData\Roaming\Typora\typora-user-images\image-20221106225716413.png" alt="image-20221106225716413" style="zoom: 33%;" />
+
+
+
 # 判断语句和循环语句
 
 
@@ -426,7 +467,20 @@ python中的比较运算符如下表
 
 `注意`：第一行后面的冒号“:”
 
-- **demo1: if-else**
+### if
+
+```python
+if 条件1:
+	语句1
+```
+
+<img src="C:\Users\李雅\AppData\Roaming\Typora\typora-user-images\image-20221106231139901.png" alt="image-20221106231139901" style="zoom: 25%;" />
+
+
+
+###  if-else
+
+<img src="C:\Users\李雅\AppData\Roaming\Typora\typora-user-images\image-20221106231424779.png" alt="image-20221106231424779" style="zoom: 50%;" />
 
 ```python
 if 条件1:
@@ -435,7 +489,9 @@ else:
 	语句2
 ```
 
-- **demo2:  if--elif-else**
+### if--elif-else
+
+<img src="C:\Users\李雅\AppData\Roaming\Typora\typora-user-images\image-20221106231514175.png" alt="image-20221106231514175" style="zoom: 50%;" />
 
 ```python
 if 条件1:
@@ -446,7 +502,7 @@ else:
    语句3
 ```
 
-- **if嵌套**
+### if嵌套
 
 ```python
 if 条件1:
@@ -457,11 +513,22 @@ if 条件1:
 
 
 
-##  while循环
+## while循环
 
 ```python
 while 条件1:
         条件满足时，做的事情1
+```
+
+
+
+## for循环
+
+for循环可以遍历任何序列的项目，如一个string，list ，tuple，set或者dict等。
+
+```python
+for 变量 in 可迭代对象:
+    语句
 ```
 
 
@@ -472,19 +539,6 @@ while 条件1:
 - continue的作用：用来结束本次循环，紧接着执行下一次的循环
 - break/continue只能用在循环中，除此以外不能单独使用
 - break/continue在嵌套循环中，只对最近的一层循环起作用
-
-
-
-## for循环
-
-for循环可以遍历任何序列的项目，如一个列表或者一个字符串等。
-
-```python
-# 取出字符串里的元素
-name = 'dongGe'
-for x in name:
-    print(x)
-```
 
 
 
@@ -511,6 +565,8 @@ List （列表）是 Python 内置的一种数据类型，类似于C/C++的数�
 ```python
 list = []
 list1 = ['两点水','twowter','liangdianshui',123]
+list('hello')
+list(tuple1)
 ```
 
 **列表的嵌套**
@@ -536,7 +592,7 @@ b= list[start:end]  #访问列表的[start，end）元素
 ## 4. 修改list
 
 ```python
-list[index] = obj       # 赋值
+list[index] = obj       # 重新赋值
 list.append(obj)        #在列表末尾添加新的对象                                      
 list.extend(seq)        #在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表） 
 list.insert(index, obj) #将对象插入列表                                            
@@ -610,6 +666,8 @@ tuple 和 List 非常类似，但是 **tuple 一旦初始化就不能修改**。
 
 ```python
 tuple1=('两点水','twowter','liangdianshui',123,456)
+tuple(list1)
+tuple('hello')
 ```
 
 创建空元组
@@ -830,3 +888,46 @@ Python字典包含了以下内置方法：
 | 10   | [dict.values()](https://www.runoob.com/python/att-dictionary-values.html) 以列表返回字典中的所有值 |
 | 11   | [pop(key[,default\])](https://www.runoob.com/python/python-att-dictionary-pop.html) 删除字典给定键 key 所对应的值，返回值为被删除的值。key值必须给出。 否则，返回default值。 |
 | 12   | [popitem()](https://www.runoob.com/python/python-att-dictionary-popitem.html) 返回并删除字典中的最后一对键和值。 |
+
+
+
+# set
+
+## 1. 什么是set
+
+集合（set）是一种可迭代的、无序的、不能包含重复元素的容器类型的数据。
+
+## 2. 创建set
+
+我们可以通过以下两种方式创建集合。
+1 set（iterable）函数：参数iterable是可迭代对象（字符串、列表、元组、集合和字典等）。
+2 {元素1，元素2，元素3，⋯}：指定具体的集合元素，元素之间以逗号分隔。对于集合元素，需要使用大括号括起来。
+
+<img src="C:\Users\李雅\AppData\Roaming\Typora\typora-user-images\image-20221106234054308.png" alt="image-20221106234054308" style="zoom:33%;" />
+
+## 3. 修改集合
+
+修改集合类似于修改列表，可以向其中插入和删除元素。修改可变集合有如右所示的常用方法。
+set1.add(elem)：添加元素，如果元素已经存在，则不能添加，不会
+抛出错误。
+set1.remove(elem)：删除元素，如果元素不存在，则抛出错误。
+set1.clear()：清除集合。
+
+# imort
+
+在Python中一个模块就是一个文件，模块是保存代码的最小单位，在模块中可以声明变量、函数、属性和类等Python代码元素。
+
+- import＜模块名＞：通过这种方式会导入<模块名>的所有代码元素，在访问时需要加前缀“模块名.”
+
+  <img src="C:\Users\李雅\AppData\Roaming\Typora\typora-user-images\image-20221106223752073.png" alt="image-20221106223752073" style="zoom:33%;" />
+
+- from＜模块名＞import＜代码元素＞：通过这种方式会导入m2中的x变量，在访问时不需要加前缀“m2.”
+
+  <img src="C:\Users\李雅\AppData\Roaming\Typora\typora-user-images\image-20221106223811710.png" alt="image-20221106223811710" style="zoom:33%;" />
+
+- from＜模块名＞import＜代码元素＞as＜代码元素别名＞：与②类似，在当前m1模块的代码元素（x变量）与要导入的m2模块的代码元素（x变量）名称有冲突时，可以给要导入的代码元素（m2中的x）一个别名x2
+
+<img src="C:\Users\李雅\AppData\Roaming\Typora\typora-user-images\image-20221106223825550.png" alt="image-20221106223825550" style="zoom:33%;" />
+
+
+
