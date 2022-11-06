@@ -14,11 +14,13 @@
 
 Python 是著名的“龟叔” Guido van Rossum 在 1989 年圣诞节期间，为了打发无聊的圣诞节而编写的一个编程语言。国内社区通常将Guido van Rossum简称为“龟叔”，“龟”的发音取自Guido中的“Gui”。
 
-<img src="C:\Users\李雅\AppData\Roaming\Typora\typora-user-images\image-20221106222457511.png" alt="image-20221106222457511" style="zoom: 25%;" />
+
+
+<img src="assets/image-20221107000517954.png" alt="image-20221107000517954" style="zoom:33%;" />
 
 Python的历史大致如下。目前通用的是python3版本。
 
-<img src="C:\Users\李雅\AppData\Roaming\Typora\typora-user-images\image-20221106222741751.png" alt="image-20221106222741751" style="zoom:33%;" />
+<img src="assets/image-20221106222741751.png" alt="image-20221106222741751" style="zoom: 33%;" />
 
 Python 是高级编程语言，它有一个特点就是能快速的开发。Python 为我们提供了非常完善的基础代码库，覆盖了网络、文件、GUI、数据库、文本等大量内容，被形象地称作“内置电池（batteries included）”。用 Python 开发，许多功能不必从零编写，直接使用现成的即可。而且 Python 还能开发网站，多大型网站就是用 Python 开发的，例如 YouTube、Instagram，还有国内的豆瓣。很多大公司，包括 Google、Yahoo 等，甚至 NASA（美国航空航天局）都大量地使用 Python。
 
@@ -221,9 +223,7 @@ a = 100.1
 
 整数和浮点数（小数）在数学中被统称为实数。与实数对应的是复数，复数在数学中被表示为：a+bi，其中a被称为实部，b被称为虚部，i被称为虚数单位。复数在数学、理论物理学和电气工程等方面应用广泛，例如向量就可以使用复数表示。
 
-<img src="C:\Users\李雅\AppData\Roaming\Typora\typora-user-images\image-20221106224424410.png" alt="image-20221106224424410" style="zoom: 50%;" />
-
-
+<img src="assets/image-20221106224424410.png" alt="image-20221106224424410" style="zoom:33%;" />
 
 ## 字符串
 
@@ -231,7 +231,7 @@ string 使用‘ ’ 或者“ ”括起来的元素
 
 ### 字符串创建
 
-<img src="C:\Users\李雅\AppData\Roaming\Typora\typora-user-images\image-20221106232845582.png" alt="image-20221106232845582" style="zoom: 33%;" />
+<img src="assets/image-20221106232845582.png" alt="image-20221106232845582" style="zoom:33%;" />
 
 字符串：双引号或者单引号中的数据
 
@@ -417,7 +417,7 @@ type(<object>)用于判断对象的类型，返回结果可为str、int、float�
 
 ## 赋值运算符
 
-<img src="C:\Users\李雅\AppData\Roaming\Typora\typora-user-images\image-20221106225325442.png" alt="image-20221106225325442" style="zoom:50%;" />
+<img src="assets/image-20221106225325442.png" alt="image-20221106225325442" style="zoom:33%;" />
 
 ## 关系运算符
 
@@ -449,13 +449,13 @@ python中的比较运算符如下表
 
 位运算是以二进位（bit）为单位进行运算的，操作数和结果都是整数类型的数据。
 
-<img src="C:\Users\李雅\AppData\Roaming\Typora\typora-user-images\image-20221106225032012.png" alt="image-20221106225032012" style="zoom: 25%;" />
+<img src="assets/image-20221106225032012.png" alt="image-20221106225032012" style="zoom: 25%;" />
 
 
 
 ## 运算符的优先级
 
-<img src="C:\Users\李雅\AppData\Roaming\Typora\typora-user-images\image-20221106225716413.png" alt="image-20221106225716413" style="zoom: 33%;" />
+<img src="assets/image-20221106225716413.png" alt="image-20221106225716413" style="zoom:33%;" />
 
 
 
@@ -474,13 +474,9 @@ if 条件1:
 	语句1
 ```
 
-<img src="C:\Users\李雅\AppData\Roaming\Typora\typora-user-images\image-20221106231139901.png" alt="image-20221106231139901" style="zoom: 25%;" />
-
 
 
 ###  if-else
-
-<img src="C:\Users\李雅\AppData\Roaming\Typora\typora-user-images\image-20221106231424779.png" alt="image-20221106231424779" style="zoom: 50%;" />
 
 ```python
 if 条件1:
@@ -490,8 +486,6 @@ else:
 ```
 
 ### if--elif-else
-
-<img src="C:\Users\李雅\AppData\Roaming\Typora\typora-user-images\image-20221106231514175.png" alt="image-20221106231514175" style="zoom: 50%;" />
 
 ```python
 if 条件1:
@@ -903,7 +897,7 @@ Python字典包含了以下内置方法：
 1 set（iterable）函数：参数iterable是可迭代对象（字符串、列表、元组、集合和字典等）。
 2 {元素1，元素2，元素3，⋯}：指定具体的集合元素，元素之间以逗号分隔。对于集合元素，需要使用大括号括起来。
 
-<img src="C:\Users\李雅\AppData\Roaming\Typora\typora-user-images\image-20221106234054308.png" alt="image-20221106234054308" style="zoom:33%;" />
+<img src="assets/image-20221106234054308.png" alt="image-20221106234054308" style="zoom:33%;" />
 
 ## 3. 修改集合
 
@@ -919,15 +913,11 @@ set1.clear()：清除集合。
 
 - import＜模块名＞：通过这种方式会导入<模块名>的所有代码元素，在访问时需要加前缀“模块名.”
 
-  <img src="C:\Users\李雅\AppData\Roaming\Typora\typora-user-images\image-20221106223752073.png" alt="image-20221106223752073" style="zoom:33%;" />
-
 - from＜模块名＞import＜代码元素＞：通过这种方式会导入m2中的x变量，在访问时不需要加前缀“m2.”
-
-  <img src="C:\Users\李雅\AppData\Roaming\Typora\typora-user-images\image-20221106223811710.png" alt="image-20221106223811710" style="zoom:33%;" />
 
 - from＜模块名＞import＜代码元素＞as＜代码元素别名＞：与②类似，在当前m1模块的代码元素（x变量）与要导入的m2模块的代码元素（x变量）名称有冲突时，可以给要导入的代码元素（m2中的x）一个别名x2
 
-<img src="C:\Users\李雅\AppData\Roaming\Typora\typora-user-images\image-20221106223825550.png" alt="image-20221106223825550" style="zoom:33%;" />
+
 
 
 
