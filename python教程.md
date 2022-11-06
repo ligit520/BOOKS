@@ -1,6 +1,9 @@
 自己编写的python教程
 
-> https://github.com/walter201230/Python
+> 参考：
+>
+> - https://github.com/walter201230/Python
+> - https://www.runoob.com/python3/python3-tutorial.html
 
 **主要目录如下：**
 
@@ -40,28 +43,59 @@ print('Hello Python')
 python hello.py
 ```
 
-# 4.Python的语法
+# 4.Python的注意事项
 
--  采用UTF-8 编码
+- 采用UTF-8 编码
+
+  ```python
+  #-*-coding:utf-8-*-
+  ```
+
 - 具有严格的缩进，Tab
+
 - 大小写敏感
+
 - 与C、C++不同，每一行代码的结尾不用分号；
-- 注释：#
-- 多行注释：‘’‘ --------- ’‘’
 
-# Python 中的变量 #
+- 注释：通过用自己熟悉的语言，在程序中对某些代码进行标注说明，这就是注释的作用，能够大大增强程序的可读性
 
-## 1、变量的创建和赋值 ##
+  单行注释：
+
+  以#单独一行开头，或者在一行代码后面注释
+
+- 多行注释：
+
+  ‘’‘ ---
+
+  xxx
+
+  -- ’‘’
+
+# 5. Python 中的变量 #
+
+## 1. 变量的创建和赋值 ##
 
 在 Python 程序中，变量是用一个变量名表示，可以是任意数据类型，变量名必须是大小写英文、数字和下划线（_）的组合，且不能用数字开头，比如：
 
 ```python
 a = 88
+b = 3.141
+c = 'string'
+d = ['a',123,12.13,[123,111]] # list
+e = ('a',123,12.13,[123,111]) # tuple
 ```
 
-这里的 `a` 就是一个变量，代表一个整数，注意一点是 Python 是不用声明数据类型的。在 Python 中 `=` 是赋值语句，跟其他的编程语言也是一样的，因为 Python 定义变量时不需要声明数据类型，因此可以把任意的数据类型赋值给变量，且同一个变量可以反复赋值，而且可以是不同的数据类型。
+- 这里的 `a` 就是一个变量，代表一个整数。
 
-## 2、多个变量赋值 ##
+- 在 Python 中 `=` 是赋值语句，跟其他的编程语言也是一样的。
+
+- 注意一点是 Python 是不用声明数据类型的，因此可以把任意的数据类型赋值给变量，且同一个变量可以反复赋值，而且可以是不同的数据类型。
+
+- 可以使用type(变量的名字)，来查看变量的类型
+
+
+
+## 2. 多个变量赋值 ##
 
 Python 允许同时为多个变量赋值。例如：
 
@@ -79,9 +113,83 @@ a, b, c = 1, 2, "liangdianshui"
 
 以上实例，两个整型对象 1 和 2 的分配给变量 a 和 b，字符串对象 "liangdianshui" 分配给变量 c。
 
-# 基本数据类型
+## 3. 命名规则
+
+**驼峰命名**
+
+- 小驼峰式命名法（lower camel case）： 第一个单词以小写字母开始；第二个单词的首字母大写，例如：myName、aDog
+
+- 大驼峰式命名法（upper camel case）： 每一个单字的首字母都采用大写字母，例如：FirstName、LastName
+
+- 不过在程序员中还有一种命名法比较流行，就是用下划线“_”来连接所有的单词，比如send_buf
+
+
+
+## 4. 关键字
+
+关键字，是python已经使用的了，所以不允许开发者自己定义和关键字相同的名字的标示符。
+
+```python
+ and     as      assert     break     class      continue    def     del
+      elif    else    except     exec      finally    for         from    global
+      if      in      import     is        lambda     not         or      pass
+      print   raise   return     try       while      with        yield
+```
+
+可以通过以下命令进行查看当前系统中python的关键字:
+
+```python
+import keyword
+keyworld.kwlist
+```
+
+# 6. 输入和输出
+
+## 1. 输入
+
+```python
+# input()接受表达式输入，并把表达式的结果赋值给等号左边的变量
+a = input('提示信息：')
+```
+
+- **返回字符串**
+- 与int函数结合使用，为变量赋整数值。
+
+- 与float函数结合使用，为变量赋浮点数值。
+
+## 2. 格式化输出
+
+```python
+age = 18
+name = "xiaohua"
+print("我的姓名是%s,年龄是%d"%(name,age))
+```
+
+| 格式符号 |             转换             |
+| :------: | :--------------------------: |
+|    %c    |             字符             |
+|    %s    | 通过str() 字符串转换来格式化 |
+|    %i    |       有符号十进制整数       |
+|    %d    |       有符号十进制整数       |
+|    %u    |       无符号十进制整数       |
+|    %o    |          八进制整数          |
+|    %x    |   十六进制整数（小写字母）   |
+|    %X    |   十六进制整数（大写字母）   |
+|    %e    |     索引符号（小写'e'）      |
+|    %E    |     索引符号（大写“E”）      |
+|    %f    |           浮点实数           |
+|    %g    |       ％f和％e 的简写        |
+|    %G    |        ％f和％E的简写        |
+
+
+
+
+
+# 7. 基本数据类型
 
 整型（int）、浮点数（float）、字符串（string）、布尔值（boll）、空值(None)
+
+
 
 ## 整型
 
@@ -89,15 +197,23 @@ a, b, c = 1, 2, "liangdianshui"
 a = 100
 ```
 
+
+
 ## 浮点数
 
 ```python
 a = 100.1
 ```
 
+
+
 ## 字符串
 
 string 使用‘ ’ 或者“ ”括起来的
+
+### 字符串创建
+
+字符串：双引号或者单引号中的数据
 
 ```python
 str1 = "100"
@@ -112,17 +228,119 @@ print(str3)
 >a'b'c
 ```
 
+### 字符串输出
+
+```python
+print("姓名：%s"%name)
+```
+
+### 字符串输入
+
+```python
+userName = input('请输入用户名:')
+```
+
+### 字符串索引
+
+```python
+name = 'abcdef'
+print(name[0])
+```
+
+
+
+### 字符串切片
+
+`切片`是指对操作的对象截取其中一部分的操作。**字符串、列表、元组**都支持切片操作。
+
+**切片的语法**：[起始:结束:步长]
+
+**注意：选取的区间属于左闭右开型，即从"起始"位开始，到"结束"位的前一位结束（不包含结束位本身)。**
+
+我们以字符串为例讲解。
+
+如果取出一部分字符串，则可以在中括号[]中使用:
+
+```python
+name = 'abcdef'
+print(name[0:3]) # 取 下标0~2 的字符
+```
+
+
+
+### 字符串的常见操作
+
+| 函数       | 用法                                                         | 说明                                                         |
+| ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| find       | mystr.find(str, start=0, end=len(mystr))                     | 检测 str 是否包含在 mystr中，如果是返回开始的索引值，否则返回-1 |
+| rfind      | mystr.rfind(str, start=0,end=len(mystr) )                    | 类似于 find()函数，不过是从右边开始查找.                     |
+| index      | mystr.index(str, start=0, end=len(mystr))                    | str是否在mystr中                                             |
+| rindex     | mystr.rindex( str, start=0,end=len(mystr))                   | 类似于 index()，不过是从右边开始.                            |
+| count      | mystr.count(str, start=0, end=len(mystr))                    | 返回 str在start和end之间 在 mystr里面出现的次数              |
+| replace    | mystr.replace(str1, str2,  mystr.count(str1))                | 把 mystr 中的 str1 替换成 str2,如果 count 指定，则替换不超过 count 次 |
+| split      | mystr.split(str=" ", 2)                                      | 以 str 为分隔符切片 mystr，如果 maxsplit有指定值，则仅分隔 maxsplit 个子字符串 |
+| capitalize | mystr.capitalize()                                           | 把字符串的第一个字符大写                                     |
+| title      | mystr.title()                                                | 把字符串的每个单词首字母大写                                 |
+| startswith | mystr.startswith(obj)                                        | 检查字符串是否是以 obj 开头, 是则返回 True，否则返回 False   |
+| endswith   | mystr.endswith(obj)                                          | 检查字符串是否以obj结束，如果是返回True,否则返回 False.      |
+| lower      | mystr.lower()                                                | 转换 mystr 中所有大写字符为小写                              |
+| upper      | mystr.upper()                                                | 转换 mystr 中的小写字母为大写                                |
+| ljust      | mystr.ljust(width)                                           | 返回一个原字符串左对齐,并使用空格填充至长度 width 的新字符串 |
+| rjust      | mystr.rjust(width)                                           | 返回一个原字符串右对齐,并使用空格填充至长度 width 的新字符串 |
+| center     | mystr.center(width)                                          | 返回一个原字符串居中,并使用空格填充至长度 width 的新字符串   |
+| lstrip     | mystr.lstrip()                                               | 删除 mystr 左边的空白字符                                    |
+| rstrip     | mystr.rstrip()                                               | 删除 mystr 字符串末尾的空白字符                              |
+| strip      | mystr.strip()                                                | 删除mystr字符串两端的空白字符                                |
+| partition  | mystr.partition(str)                                         | 把mystr以str分割成三部分,str前，str和str后                   |
+| rpartition | mystr.rpartition(str)                                        | 类似于 partition()函数,不过是从右边开始.                     |
+| splitlines | mystr.splitlines()                                           | 按照行分隔，返回一个包含各行作为元素的列表                   |
+| isalpha    | mystr.isalpha()                                              | 如果 mystr 所有字符都是字母 则返回 True,否则返回 False       |
+| isdigit    | mystr.isdigit()                                              | 如果 mystr 只包含数字则返回 True 否则返回 False              |
+| isalnum    | mystr.isalnum()                                              | 如果 mystr 所有字符都是字母或数字则返回 True,否则返回 False  |
+| isspace    | mystr.isspace()                                              | 如果 mystr 中只包含空格，则返回 True，否则返回 False.        |
+| join       | mystr.join(str)                                              | mystr 中每个字符后面插入str,构造出一个新的字符串             |
+|            | [max(str)](https://www.runoob.com/python/att-string-max.html) | 返回字符串 *str* 中最大的字母。                              |
+|            | [min(str)](https://www.runoob.com/python/att-string-min.html) | 返回字符串 *str* 中最小的字母。                              |
+|            |                                                              |                                                              |
+
+
+
 ## bool
 
 Python 中，可以直接用 True、False 表示布尔值（请注意大小写）
 
 布尔值可以用 `and`、`or` 和 `not` 运算。
 
+
+
 ## 空值
 
 在 Python 中，用 `None `来表示
 
-# 基本数据类型转换 #
+
+
+## 转义字符
+
+| 转义字符    | 描述                                                     |
+| :---------- | :------------------------------------------------------- |
+| \(在行尾时) | 续行符                                                   |
+| \\          | 反斜杠符号                                               |
+| \'          | 单引号                                                   |
+| \"          | 双引号                                                   |
+| \a          | 响铃                                                     |
+| \b          | 退格(Backspace)                                          |
+| \e          | 转义                                                     |
+| \000        | 空                                                       |
+| \n          | 换行                                                     |
+| \v          | 纵向制表符                                               |
+| \t          | 横向制表符                                               |
+| \r          | 回车                                                     |
+| \f          | 换页                                                     |
+| \oyy        | 八进制数，y 代表 0~7 的字符，例如：\012 代表换行。       |
+| \xyy        | 十六进制数，以 \x 开头，yy代表的字符，例如：\x0a代表换行 |
+| \other      | 其它的字符以普通格式输出                                 |
+
+## 数据类型转换 ##
 
 Python 中基本数据类型转换的方法有下面几个。
 
@@ -154,9 +372,43 @@ print(int(str1) + int(str2))
 >300
 ```
 
+type(<object>)用于判断对象的类型，返回结果可为str、int、float、list等。
 
 
-## 逻辑运算
+
+## 算术运算符
+
+下面以a=10 ,b=20为例进行计算
+
+| 运算符 |  描述  | 实例                                                         |
+| :----- | :----: | ------------------------------------------------------------ |
+| +      |   加   | 两个对象相加 a + b 输出结果 30                               |
+| -      |   减   | 得到负数或是一个数减去另一个数 a - b 输出结果 -10            |
+| *      |   乘   | 两个数相乘或是返回一个被重复若干次的字符串 a * b 输出结果 200 |
+| /      |   除   | x除以y b / a 输出结果 2                                      |
+| %      |  取余  | 返回除法的余数 b % a 输出结果 0                              |
+| **     |   幂   | 返回x的y次幂 a**b 为10的20次方， 输出结果 100000000000000000000 |
+| //     | 取整除 | 返回商的整数部分 9//2 输出结果 4 , 9.0//2.0 输出结果 4.0     |
+
+
+
+## 关系运算符
+
+python中的比较运算符如下表
+
+| 运算符 | 描述                                                         | 示例                                              |
+| :----- | :----------------------------------------------------------- | :------------------------------------------------ |
+| ==     | 检查两个操作数的值是否相等，如果是则条件变为真。             | 如a=3,b=3则（a == b) 为 true.                     |
+| !=     | 检查两个操作数的值是否相等，如果值不相等，则条件变为真。     | 如a=1,b=3则(a != b) 为 true.                      |
+| <>     | 检查两个操作数的值是否相等，如果值不相等，则条件变为真。     | 如a=1,b=3则(a <> b) 为 true。这个类似于 != 运算符 |
+| >      | 检查左操作数的值是否大于右操作数的值，如果是，则条件成立。   | 如a=7,b=3则(a > b) 为 true.                       |
+| <      | 检查左操作数的值是否小于右操作数的值，如果是，则条件成立。   | 如a=7,b=3则(a < b) 为 false.                      |
+| >=     | 检查左操作数的值是否大于或等于右操作数的值，如果是，则条件成立。 | 如a=3,b=3则(a >= b) 为 true.                      |
+| <=     | 检查左操作数的值是否小于或等于右操作数的值，如果是，则条件成立。 | 如a=3,b=3则(a <= b) 为 true.                      |
+
+
+
+## 逻辑运算符
 
 `and` 运算是与运算，只有所有都为 True，and 运算结果才是 True。
 
@@ -166,42 +418,93 @@ print(int(str1) + int(str2))
 
 
 
+# 判断语句和循环语句
+
+
+
+## If语句
+
+`注意`：第一行后面的冒号“:”
+
+- **demo1: if-else**
+
+```python
+if 条件1:
+	语句1
+else:
+	语句2
+```
+
+- **demo2:  if--elif-else**
+
+```python
+if 条件1:
+   语句1
+elif 条件2:
+   语句2
+else:
+   语句3
+```
+
+- **if嵌套**
+
+```python
+if 条件1:
+	语句1
+    if 条件2:
+		语句2 
+```
+
+
+
+##  while循环
+
+```python
+while 条件1:
+        条件满足时，做的事情1
+```
+
+
+
+## break和continue
+
+- break的作用：用来结束整个循环
+- continue的作用：用来结束本次循环，紧接着执行下一次的循环
+- break/continue只能用在循环中，除此以外不能单独使用
+- break/continue在嵌套循环中，只对最近的一层循环起作用
+
+
+
+## for循环
+
+for循环可以遍历任何序列的项目，如一个列表或者一个字符串等。
+
+```python
+# 取出字符串里的元素
+name = 'dongGe'
+for x in name:
+    print(x)
+```
+
+
+
 # List #
 
-## 1、什么是 List 
-
-List （列表）是 Python 内置的一种数据类型。 它是一种有序的集合，可以随时添加和删除其中的元素。
-
-那为什么要有 List （列表）呢？
-
-我们用一个例子来说明。
-
-现在有一个团队要出去玩，要先报名。如果用我们之前学过的知识，那么就是用一个字符串变量把他们都记录起来。
-
-![](http://twowaterimage.oss-cn-beijing.aliyuncs.com/2019-08-31-080527.png)
-
-但是这样太麻烦了，而且也不美观。
-
-在编程中，一定要学会偷懒，避免「重复性工作」。如果有一百个成员，那么你及时是复制粘贴，也会把你写烦。
-
-这时候就可以使用列表了。
-
-![](http://twowaterimage.oss-cn-beijing.aliyuncs.com/2019-08-31-080835.png)
-
-就这样，一行代码就可以存放 N 多个名字了。
 
 
-## 2、创建 List ##
+## 1. 什么是 List 
+
+List （列表）是 Python 内置的一种数据类型，类似于C/C++的数组。 它是一种有序的集合，可以随时添加和删除其中的元素。
+
+
+
+## 2. 创建 List ##
 
 从上面的例子可以分析出，列表的格式是这样的。
 
-![](http://twowaterimage.oss-cn-beijing.aliyuncs.com/2019-08-31-081342.png)
-
 其实列表就是用**中括号 `[]`** 括起来的数据，里面的每一个数据就叫做元素。每个元素之间使用逗号分隔。
 
-而且**列表的数据元素可以是不同的数据类型**。
-
-
+**列表的数据元素可以是不同的数据类型**。
 
 比如：
 
@@ -210,50 +513,86 @@ list = []
 list1 = ['两点水','twowter','liangdianshui',123]
 ```
 
+**列表的嵌套**
 
-## 3、List运算符 ##
+一个列表中的元素又是一个列表，那么这就是列表的嵌套
+
+```python
+    schoolNames = [['北京大学','清华大学'],
+                    ['南开大学','天津大学','天津师范大学'],
+                    ['山东大学','中国海洋大学']]
+```
+
+## 3. 访问list
+
+```python
+a = list[index]  #访问列表的某个元素
+
+b= list[start:end]  #访问列表的[start，end）元素
+```
+
+
+
+## 4. 修改list
+
+```python
+list[index] = obj       # 赋值
+list.append(obj)        #在列表末尾添加新的对象                                      
+list.extend(seq)        #在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表） 
+list.insert(index, obj) #将对象插入列表                                            
+
+
+```
+
+
+
+## 5. 删除list
+
+```python
+list.pop(obj=list[-1])  #移除列表中的一个元素（默认最后一个元素），并且返回该元素的值
+del list[index]  		#删除列表的某个元素                 
+list.remove(obj)  		#根据元素的值进行删除,并且不返回任何值 
+```
+
+
+
+## 6. List运算符 ##
 
 列表对 `+`  和 `*`  的操作符与字符串相似。`+` 号用于组合列表，`*`  号用于重复列表。
 
-| Python 表达式                | 结果                         | 描述                 |
-| ---------------------------- | ---------------------------- | -------------------- |
-| [1, 2, 3] + [4, 5, 6]        | [1, 2, 3, 4, 5, 6]           | 组合                 |
-| ['Hi!'] * 4                  | ['Hi!', 'Hi!', 'Hi!', 'Hi!'] | 复制                 |
-| 3 in [1, 2, 3]               | True                         | 元素是否存在于列表中 |
-| for x in [1, 2, 3]: print x, | 1 2 3                        | 迭代                 |
+| Python 表达式                  | 结果                         | 描述                 |
+| ------------------------------ | ---------------------------- | -------------------- |
+| [1, 2, 3] + [4, 5, 6]          | [1, 2, 3, 4, 5, 6]           | 组合                 |
+| ['Hi!'] * 4                    | ['Hi!', 'Hi!', 'Hi!', 'Hi!'] | 复制                 |
+| 3 **in** [1, 2, 3]、**not in** | True                         | 元素是否存在于列表中 |
+| for x in [1, 2, 3]: print x,   | 1 2 3                        | 迭代循环遍历         |
 
 
-## 4、List 常用的函数&方法 ##
 
-| 函数&方法               | 描述                                                         |
-| ----------------------- | ------------------------------------------------------------ |
-| list[index]             | 访问列表的某个元素                                           |
-| list[start:end]         | 访问列表的{start，end）元素                                  |
-| len(list)               | 列表元素个数                                                 |
-| max(list)               | 返回列表元素最大值                                           |
-| min(list)               | 返回列表元素最小值                                           |
-| list(seq)               | 将元组转换为列表                                             |
-| list.append(obj)        | 在列表末尾添加新的对象                                       |
-| list.count(obj)         | 统计某个元素在列表中出现的次数                               |
-| list.extend(seq)        | 在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表） |
-| list.index(obj)         | 从列表中找出某个值第一个匹配项的索引位置                     |
-| list.insert(index, obj) | 将对象插入列表                                               |
-| list.pop(obj=list[-1])  | 移除列表中的一个元素（默认最后一个元素），并且返回该元素的值 |
-| del list[index]         | 删除列表的某个元素                                           |
-| list.remove(obj)        | 移除列表中的一个元素（参数是列表中元素），并且不返回任何值   |
-| list.reverse()          | 反向列表中元素                                               |
-| list.sort([func])       | 对原列表进行排序                                             |
+## 7. List 常用的函数 ##
+
+| 函数&方法         | 描述                                                         |
+| ----------------- | ------------------------------------------------------------ |
+| len(list)         | 列表元素个数                                                 |
+| max(list)         | 返回列表元素最大值                                           |
+| min(list)         | 返回列表元素最小值                                           |
+| list(seq)         | 将元组转换为列表                                             |
+| list.count(obj)   | 统计某个元素在列表中出现的次数                               |
+| list.index(obj)   | 从列表中找出某个值第一个匹配项的索引位置                     |
+| list.reverse()    | 反向列表中元素                                               |
+| list.sort([func]) | 按特定顺序重新排列，默认为由小到大，参数reverse=True可改为倒序，由大到小。 |
 
 
 
 # tuple #
 
-## 1、什么是元组 （tuple） ##
 
-上一节刚说了一个有序列表 List ，现在说另一种有序列表叫元组：tuple 。
+
+## 1、什么是tuple ##
+
+上一节刚说了一个有序列表 List ，现在说另一种有序列表叫**元组**：tuple 。
 
 tuple 和 List 非常类似，但是 **tuple 一旦初始化就不能修改**。
-也就是说元组（tuple）是不可变的，那么不可变是指什么意思呢？
 
 元组（tuple） 不可变是指当你创建了 tuple 时候，它就不能改变了，也就是说它也没有 append()，insert() 这样的方法，但它也有获取某个索引值的方法，但是不能赋值。
 
@@ -265,7 +604,7 @@ tuple 和 List 非常类似，但是 **tuple 一旦初始化就不能修改**。
 
 
 
-## 2、创建元组 ##
+## 2、创建tuple ##
 
 元组创建很简单，只需要在括号**`()`**中添加元素，并使用逗号隔开即可。
 
@@ -290,19 +629,22 @@ tuple4=(123,)
 
 这是因为括号 () 既可以表示元组（tuple），又可以表示数学公式中的小括号，这就产生了歧义。
 
+
+
 ## 3、访问tuple ##
 
 元组下标索引也是从 0 开始，元组（tuple）可以使用下标索引来访问元组中的值。
 
 ```python
 #-*-coding:utf-8-*-
-
 tuple1=('两点水','twowter','liangdianshui',123,456)
 tuple2='两点水','twowter','liangdianshui',123,456
 
 print(tuple1[1])
 print(tuple2[0])
 ```
+
+
 
 ## 4、修改tuple ##
 
@@ -360,6 +702,8 @@ print(tuple1)
 del tuple1
 ```
 
+
+
 ## 6、tuple运算符 ##
 
 与字符串一样，元组之间可以使用 `+` 号和 `*` 号进行运算。这就意味着他们可以组合和复制，运算后会生成一个新的元组。
@@ -371,11 +715,118 @@ del tuple1
 | 3 in (1, 2, 3)                | True                         | 元素是否存在 |
 | for x in (1, 2, 3):  print(x) | 1 2 3                        | 迭代         |
 
+
+
 ## 7、元组内置函数 ##
 
-| 方法       | 描述                 |
-| ---------- | -------------------- |
-| len(tuple) | 计算元组元素个数     |
-| max(tuple) | 返回元组中元素最大值 |
-| min(tuple) | 返回元组中元素最小值 |
-| tuple(seq) | 将列表转换为元组     |
+| 方法                        | 描述                    |
+| --------------------------- | ----------------------- |
+| len(tuple1)                 | 计算元组元素个数        |
+| max(tuple1)                 | 返回元组中元素最大值    |
+| min(tuple1)                 | 返回元组中元素最小值    |
+| tuple(seq)                  | 将列表转换为元组        |
+| tuple1.index(obj,strat,end) | obj在tuple1中的索引     |
+| tuple1.count(obj)           | tuple1中obj的元素的个数 |
+
+
+
+# dict
+
+## 1. 什么是dict 字典
+
+字典是另一种可变容器模型，且可存储任意类型对象。
+
+字典的每个键值 **key:value** 对用冒号 **:** 分割，每个键值对之间用逗号 **,** 分割，整个字典包括在花括号 **{}** 中 ,格式如下所示：
+
+```python
+d = {key1 : value1, key2 : value2 }
+```
+
+
+
+- 字典中找某个元素时，是根据`key`来进行查找的
+- 字典里的元素没有顺序
+- 字典里的`key`不能重复，`value`可以重复，如果重复最后的一个键值对会替换前面的，值不需要唯一。
+- `value`可以取任何数据类型，但`key`必须是不可变的，如string，数字或tuple（list不可以）。
+
+
+
+## 2. 创建dict
+
+```python
+tinydict1 = { 'abc': 456 }
+tinydict2 = { 'abc': 123, 98.6: 37 }
+```
+
+
+
+## 3. 访问dict
+
+把相应的键放入熟悉的方括弧，如下:
+
+```python
+tinydict = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}  
+tinydict['Name'] 
+tinydict['Age']
+```
+
+- 如果用dict里没有的`key`访问数据，会输出错误
+- dict1.get(key1) # 获取不存在的key1，获取到空的内容，不会出现异常
+
+
+
+## 4. 修改dict
+
+向字典添加新内容的方法是增加新的键/值对
+
+```python
+tinydict = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
+tinydict['Age'] = 8 # 更新
+tinydict['School'] = "RUNOOB" # 添加
+```
+
+
+
+## 5. 删除dict
+
+```python
+tinydict = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
+ 
+del tinydict['Name']  # 删除键是'Name'的条目
+tinydict.clear()      # 清空字典所有条目
+del tinydict          # 删除字典
+```
+
+
+
+## 6. 字典内置函数&方法
+
+Python字典包含了以下内置函数：
+
+| 序号 | 函数                | 描述                                             |
+| :--- | :------------------ | ------------------------------------------------ |
+| 1    | cmp(dict1, dict2）  | 比较两个字典元素                                 |
+| 2    | len(dict1)          | 计算字典元素个数，即键的总数                     |
+| 3    | str(dict1)          | 输出字典可打印的字符串表示                       |
+| 4    | type(variable)      | 返回输入的变量类型，如果变量是字典就返回字典类型 |
+| 5    | dict1.keys()        | 返回一个包含字典所有key的列                      |
+| 6    | dict1.values()      | 返回一个包含字典所有value的列表                  |
+| 7    | dict1.items()       | 返回一个包含所有（键，值）元祖的列表             |
+| 8    | dict1.has_key(key1) | 如果key在字典中，返回True，否则返回False         |
+
+Python字典包含了以下内置方法：
+
+| 序号 | 函数及描述                                                   |
+| :--- | :----------------------------------------------------------- |
+| 1    | dict.clear()删除字典内所有元素                               |
+| 2    | dict.copy()返回一个字典的浅复制                              |
+| 3    | [dict.fromkeys(seq[, val])创建一个新字典，以序列 seq 中元素做字典的键，val 为字典所有键对应的初始值 |
+| 4    | [dict.get(key, default=None)](https://www.runoob.com/python/att-dictionary-get.html) 返回指定键的值，如果值不在字典中返回default值 |
+| 5    | [dict.has_key(key)](https://www.runoob.com/python/att-dictionary-has_key.html) 如果键在字典dict里返回true，否则返回false |
+| 6    | [dict.items()](https://www.runoob.com/python/att-dictionary-items.html) 以列表返回可遍历的(键, 值) 元组数组 |
+| 7    | [dict.keys()](https://www.runoob.com/python/att-dictionary-keys.html) 以列表返回一个字典所有的键 |
+| 8    | [dict.setdefault(key, default=None)](https://www.runoob.com/python/att-dictionary-setdefault.html) 和get()类似, 但如果键不存在于字典中，将会添加键并将值设为default |
+| 9    | [dict.update(dict2)](https://www.runoob.com/python/att-dictionary-update.html) 把字典dict2的键/值对更新到dict里 |
+| 10   | [dict.values()](https://www.runoob.com/python/att-dictionary-values.html) 以列表返回字典中的所有值 |
+| 11   | [pop(key[,default\])](https://www.runoob.com/python/python-att-dictionary-pop.html) 删除字典给定键 key 所对应的值，返回值为被删除的值。key值必须给出。 否则，返回default值。 |
+| 12   | [popitem()](https://www.runoob.com/python/python-att-dictionary-popitem.html) 返回并删除字典中的最后一对键和值。 |
