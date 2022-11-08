@@ -962,10 +962,6 @@ for x in it:
     print (x, end=" ")
 ```
 
-### StopIteration
-
-StopIteration 异常用于标识迭代的完成，防止出现无限循环的情况，在 __next__() 方法中我们可以设置在完成指定循环次数后触发 StopIteration 异常来结束迭代。
-
 
 
 ## 生成器
@@ -1001,6 +997,10 @@ while True:
 >>> 0 1 1 2 3 5 8 13 21 34 55
 ```
 
+### StopIteration
+
+StopIteration 异常用于标识迭代的完成，防止出现无限循环的情况，在 __next__() 方法中我们可以设置在完成指定循环次数后触发 StopIteration 异常来结束迭代。
+
 
 
 # 函数
@@ -1034,6 +1034,10 @@ def 函数名（参数列表）:
 
 ## 函数的定义和调用
 
+形式参数：定义的时候的参数(局部变量)
+
+实际参数：函数调用时传入的参数
+
 ```python
 def hello() :
   print("Hello World!")
@@ -1042,12 +1046,12 @@ hello() # 函数的调用
 ```
 
 ```python
-def max(a, b):
+def max(a, b): # 形式参数
     if a > b:
         return a
     else:
         return b
-a = 4
+a = 4 # 实际参数
 b = 5
 print(max(a, b)) # 函数的调用
 ```
@@ -1081,7 +1085,7 @@ python 中一切都是对象，严格意义我们不能说值传递还是引用�
 
 ### 必需参数
 
-必需参数须以正确的顺序传入函数。调用时的数量必须和声明时的一样。
+**必需参数须以正确的顺序传入函数**。调用时的数量必须和声明时的一样。
 
 
 
@@ -1119,6 +1123,10 @@ print ("------------------------") printinfo( name="runoob" )
 
 ### 不定长参数
 
+- 加了星号 ***** 的参数会以元组(tuple)的形式导入，存放所有未命名的变量参数。
+
+如果在函数调用时没有指定参数，它就是一个空元组。我们也可以不向函数传递未命名的变量。
+
 ```python
 def functionname([formal_args,] *var_args_tuple ):
    "函数_文档字符串"
@@ -1126,11 +1134,10 @@ def functionname([formal_args,] *var_args_tuple ):
    return [expression]
 ```
 
-加了星号 ***** 的参数会以元组(tuple)的形式导入，存放所有未命名的变量参数。
 
-如果在函数调用时没有指定参数，它就是一个空元组。我们也可以不向函数传递未命名的变量。
 
-还有一种就是参数带两个星号 ***\***基本语法如下：
+- 加了两个星号 ***\*** 的参数会以字典的形式导入，基本语法如下：
+
 
 ```python
 def functionname([formal_args,] **var_args_dict ):
@@ -1139,7 +1146,7 @@ def functionname([formal_args,] **var_args_dict ):
    return [expression]
 ```
 
-加了两个星号 ***\*** 的参数会以字典的形式导入。
+
 
 声明函数时，参数中星号 ***** 可以单独出现，例如:
 
@@ -1152,17 +1159,79 @@ def f(a,b,*,c):
 
 
 
-## 匿名函数
+### 变量的作用域
+
+局部变量
+
+全局变量
+
+可以使用global x，将函数提升为全局变量
+
+
+
+## 过滤函数filter
+
+filter(function,iterable)
+
+参数function是一个提供过滤条件的函数，返回布尔值。
+参数iterable是容器类型的数据。
+
+```python
+def f1 (x):
+    return x>50
+
+data1 = [10,20,33,44,55,60]
+filtered = filter(f1, data1)
+data2 = list(filtered)
+print(data2)
+
+>>>[55,60]
+```
+
+
+
+## 映射函数map
+
+map()函数用于对容器中的元素进行映射（或变换）。
+
+用法：map(function,iterable)
+
+参数function是一个提供变换规则的函数，返回变换之后的元素。
+参数iterable是容器类型的数据。
+
+例如：我想将列表中的所有元素都乘以2，返回新的列表。
+
+```python
+def f1 (x):
+    return x*2
+
+data1 = [10,20,33,44,55,60]
+mapped = map(f1, data1)
+data2 = list(mapped)
+print(data2)
+
+>>>[20, 40, 66, 88, 110, 120]
+```
+
+
+
+
+
+## 匿名函数lambda
 
 Python 使用 **lambda** 来创建匿名函数。
 
 所谓匿名，意即不再使用 **def** 语句这样标准的形式定义一个函数。
 
 - **lambda** 只是一个表达式，函数体比 **def** 简单很多。
+
 - lambda 的主体是一个表达式，而不是一个代码块。仅仅能在 lambda 表达式中封装有限的逻辑进去。
+
 - lambda 函数拥有自己的命名空间，且不能访问自己参数列表之外或全局命名空间里的参数。
+
 - 虽然 lambda 函数看起来只能写一行，却不等同于 C 或 C++ 的内联函数，后者的目的是调用小函数时不占用栈内存从而增加运行效率。
-- 
+
+  
 
 lambda 函数的语法只包含一个语句，如下：
 
@@ -1172,13 +1241,13 @@ lambda [arg1 [,arg2,.....argn]]:expression
 
 设置参数 a 加上 10:
 
-x = lambda a : a + 10 print(x(5))
-
-以上实例输出结果：
-
+```python
+x = lambda a : a + 10 
+print(x)
+>>>15
 ```
-15
-```
+
+
 
 以下实例匿名函数设置两个参数：
 
@@ -1187,18 +1256,411 @@ x = lambda a : a + 10 print(x(5))
 sum = lambda arg1, arg2: arg1 + arg2  # 调用sum函数 
 print ("相加后的值为 : ", sum( 10, 20 )) 
 print ("相加后的值为 : ", sum( 20, 20 ))
+
+>>>相加后的值为 :  30
+>>>相加后的值为 :  40
 ```
 
-以上实例输出结果：
 
-```
-相加后的值为 :  30
-相加后的值为 :  40
-```
 
 我们可以将匿名函数封装在一个函数内，这样可以使用同样的代码来创建多个匿名函数。
 
 
+
+```python
+data1 = [10,20,33,44,55,60]
+
+filtered = filter(lambda x:(x>50),data1)
+data2 = list(filtered)
+print(data2)
+
+mapped = map(lambda x:(x*2), data1)
+data3 = list(mapped)
+print(data3)
+
+>>>[55, 60]
+>>>[20, 40, 66, 88, 110, 120]
+```
+
+
+
+# 类与对象
+
+## 什么是类和对象
+
+- **类(Class):** 用来描述具有相同的属性和方法的对象的集合。它定义了该集合中每个对象所共有的属性和方法。对象是类的实例。
+- **方法：**类中定义的函数。
+- **类变量：**类变量在整个实例化的对象中是公用的。类变量定义在类中且在函数体之外。类变量通常不作为实例变量使用。
+- **数据成员：**类变量或者实例变量用于处理类及其实例对象的相关的数据。
+- **方法重写：**如果从父类继承的方法不能满足子类的需求，可以对其进行改写，这个过程叫方法的覆盖（override），也称为方法的重写。
+- **局部变量：**定义在方法中的变量，只作用于当前实例的类。
+- **实例变量：**在类的声明中，属性是用变量来表示的，这种变量就称为实例变量，实例变量就是一个用 self 修饰的变量。
+- **继承：**即一个派生类（derived class）继承基类（base class）的字段和方法。继承也允许把一个派生类的对象作为一个基类对象对待。例如，有这样一个设计：一个Dog类型的对象派生自Animal类，这是模拟"是一个（is-a）"关系（例图，Dog是一个Animal）。
+- **实例化：**创建一个类的实例，类的具体对象。
+- **对象：**通过类定义的数据结构实例。对象包括两个数据成员（类变量和实例变量）和方法。
+
+<img src="assets/image-20221108220118791.png" alt="image-20221108220118791" style="zoom: 50%;" />
+
+
+
+## 定义类
+
+```python
+class 类名：
+	类体
+```
+
+
+
+## 创建对象
+
+```python
+class MyClass:    
+    """一个简单的类实例"""    
+    i = 12345  
+    
+    def f(self):        
+        return 'hello world'  
+    # 实例化类 
+x = MyClass()  
+# 访问类的属性和方法 
+print("MyClass 类的属性 i 为：", x.i) 
+print("MyClass 类的方法 f 输出为：", x.f())
+
+>>>MyClass 类的属性 i 为： 12345
+>>>MyClass 类的方法 f 输出为： hello world
+```
+
+
+
+```python
+class Complex:    
+    def __init__(self, realpart, imagpart):        
+        self.r = realpart        
+        self.i = imagpart 
+        
+x = Complex(3.0, -4.5) 
+print(x.r, x.i)   # 输出结果：3.0 -4.5
+```
+
+self代表类的实例，而非类
+
+
+
+## 实例方法
+
+```python
+class people:
+    # 定义基本属性
+    name = ''
+    age = 0
+    # 定义私有属性,私有属性在类外部无法直接进行访问
+    __weight = 0
+
+    # 定义构造方法
+    def __init__(self, n, a, w):
+        self.name = n
+        self.age = a
+        self.__weight = w
+        
+	#实例方法
+    def speak(self):
+        print("%s 说: 我 %d 岁。" % (self.name, self.age))
+
+# 实例化类
+p = people('runoob', 10, 30)
+p.speak()
+
+>>>runoob 说: 我 10 岁。
+```
+
+
+
+## 构造方法
+
+`__init__()`
+
+类中的__init__（）方法是一个非常特殊的方法，用来创建和初始化实例变量，这种方法就是“构造方法”。在定义__init__（）方法时，它的第1个参数应该是self，之后的参数用来初始化实例变量。调用构造方法时不需要传入self参数。
+
+```py
+class Vector:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+```
+
+
+
+## 类方法
+
+类方法与类变量类似，属于类，不属于个体实例。在定义类方法时，它的第1个参数不是self，而是类本身。
+
+需要装饰器`@classmethod`
+
+<img src="assets/image-20221108224410474.png" alt="image-20221108224410474" style="zoom: 50%;" />
+
+
+
+## 继承
+
+```python
+class people:
+    # 定义基本属性
+    name = ''
+    age = 0
+    # 定义私有属性,私有属性在类外部无法直接进行访问
+    __weight = 0
+
+    # 定义构造方法
+    def __init__(self, n, a, w):
+        self.name = n
+        self.age = a
+        self.__weight = w
+
+    def speak(self):
+        print("%s 说: 我 %d 岁。" % (self.name, self.age))
+
+# 单继承示例
+class student(people):
+    grade = ''
+
+    def __init__(self, n, a, w, g):
+        # 调用父类的构函
+        people.__init__(self, n, a, w)
+        self.grade = g
+
+    # 覆写父类的方法
+    def speak(self):
+        print("%s 说: 我 %d 岁了，我在读 %d 年级" % (self.name, self.age, self.grade))
+
+s = student('ken', 10, 60, 3)
+s.speak()
+
+>>>ken 说: 我 10 岁了，我在读 3 年级
+```
+
+
+
+## 多继承
+
+Python同样有限的支持多继承形式。多继承的类定义形如下例:
+
+```python
+class DerivedClassName(Base1, Base2, Base3):    
+	<statement-1>   
+	.   
+    .  
+    .    
+	<statement-N>
+```
+
+需要注意圆括号中父类的顺序，若是父类中有相同的方法名，而在子类使用时未指定，python从左至右搜索 即方法在子类中未找到时，从左到右查找父类中是否包含方法。
+
+```python
+# 类定义
+class people:
+    # 定义基本属性
+    name = ''
+    age = 0
+    # 定义私有属性,私有属性在类外部无法直接进行访问
+    __weight = 0
+
+    # 定义构造方法
+    def __init__(self, n, a, w):
+        self.name = n
+        self.age = a
+        self.__weight = w
+
+    def speak(self):
+        print("%s 说: 我 %d 岁。" % (self.name, self.age))
+
+
+# 单继承示例
+class student(people):
+    grade = ''
+
+    def __init__(self, n, a, w, g):
+        # 调用父类的构函
+        people.__init__(self, n, a, w)
+        self.grade = g
+
+    # 覆写父类的方法
+    def speak(self):
+        print("%s 说: 我 %d 岁了，我在读 %d 年级" % (self.name, self.age, self.grade))
+
+
+# 另一个类，多重继承之前的准备
+class speaker():
+    topic = ''
+    name = ''
+
+    def __init__(self, n, t):
+        self.name = n
+        self.topic = t
+
+    def speak(self):
+        print("我叫 %s，我是一个演说家，我演讲的主题是 %s" % (self.name, self.topic))
+
+
+# 多重继承
+class sample(speaker, student):
+    a = ''
+
+    def __init__(self, n, a, w, g, t):
+        student.__init__(self, n, a, w, g)
+        speaker.__init__(self, n, t)
+
+
+test = sample("Tim", 25, 80, 4, "Python")
+test.speak()  # 方法名同，默认调用的是在括号中参数位置排前父类的方法
+
+>>>我叫 Tim，我是一个演说家，我演讲的主题是 Python
+```
+
+
+
+## 方法重写
+
+如果你的父类方法的功能不能满足你的需求，你可以在子类重写你父类的方法。
+
+子类的方法名与父类的方法名相同，则在这种情况下，子类的方法会重写（Override）父类的同名方法。
+
+实例如下：
+
+```python
+class Parent:  # 定义父类
+    def myMethod(self):
+        print('调用父类方法')
+
+
+class Child(Parent):  # 定义子类
+    def myMethod(self):
+        print('调用子类方法')
+
+
+c = Child()  # 子类实例
+c.myMethod()  # 子类调用重写方法
+super(Child, c).myMethod()  # 用子类对象调用父类已被覆盖的方法
+
+>>>调用子类方法
+>>>调用父类方法
+```
+
+
+
+## 类的私有属性
+
+**__private_attrs**：两个下划线开头，声明该属性为私有，不能在类的外部被使用或直接访问。在类内部的方法中使用时 **self.__private_attrs**。
+
+
+
+## 类的私有方法
+
+**__private_method**：两个下划线开头，声明该方法为私有方法，只能在类的内部调用 ，不能在类的外部调用。**self.__private_methods**。
+
+
+
+## 类的专有方法
+
+- `__init__ `: 构造函数，在生成对象时调用
+
+- **__del__ :** 析构函数，释放对象时使用
+
+- **__repr__ :** 打印，转换
+
+- **__setitem__ :** 按照索引赋值
+
+- **__getitem__:** 按照索引获取值
+
+- **__len__:** 获得长度
+
+- **__cmp__:** 比较运算
+
+- **__call__:** 函数调用
+
+- **__add__:** 加运算
+
+- **__sub__:** 减运算
+
+- **__mul__:** 乘运算
+
+- **__truediv__:** 除运算
+
+- **__mod__:** 求余运算
+
+- **__pow__:** 乘方
+
+  
+
+## 运算符重载
+
+Python同样支持运算符重载，我们可以对类的专有方法进行重载，实例如下：
+
+```python
+class Vector:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+
+    def __str__(self):
+        return 'Vector (%d, %d)' % (self.a, self.b)
+
+    def __add__(self, other):
+        return Vector(self.a + other.a, self.b + other.b)
+
+
+v1 = Vector(2, 10)
+print(v1)
+v2 = Vector(5, -2)
+print(v2)
+print(v1 + v2)
+```
+
+针对__str__ 方法给出一个比较直观的例子：
+
+```python
+class people:
+    def __init__(self,name,age):
+        self.name=name
+        self.age=age
+
+    def __str__(self):
+        return '这个人的名字是%s,已经有%d岁了！'%(self.name,self.age)
+
+a=people('孙悟空',999)
+print(a)
+```
+
+输出：
+
+```python
+这个人的名字是孙悟空,已经有999岁了！
+如果没有重载函数的话输出的就是一串看不懂的字符串：
+<__main__.people object at 0x00000272A730D278>
+```
+
+
+
+## 封装性
+
+封装性是面向对象重要的基本特性之一。封装隐藏了对象的内部细节，只保留有限的对外接口，外部调用者不用关心对象的内部细节，使得操作对象变得简单。
+
+### 私有变量
+
+为了防止外部调用者随意存取类的内部数据（成员变量），内部数据（成员变量）会被封装为“私有变量”。外部调用者只能通过方法调用私有变量。
+在默认情况下，Python中的变量是公有的，可以在类的外部访问它们。如果想让它们成为私有变量，则在变量前加上双下画线（__）即可。
+
+
+
+### 私有方法
+
+私有方法与私有变量的封装是类似的，在方法前加上双下画线（__）就是私有方法了。
+
+
+
+# 异常处理
+
+为增强程序的健壮性，我们也需要考虑异常处理方面的内容。例如，在读取文件时需要考虑文件不存在、文件格式不正确等异常情况。
 
 
 
