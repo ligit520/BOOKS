@@ -6,6 +6,9 @@
 
 Python 是著名的“龟叔” Guido van Rossum 在 1989 年圣诞节期间，为了打发无聊的圣诞节而编写的一个编程语言。国内社区通常将Guido van Rossum简称为“龟叔”，“龟”的发音取自Guido中的“Gui”。
 
+Guido van Rossum 有一句著名的话就是 “**Life is short, you need Python**” ，译为： “ **人生苦短，我用**
+**Python**” 。
+
 
 
 <img src="assets/image-20221107000517954.png" alt="image-20221107000517954" style="zoom:33%;" />
@@ -16,10 +19,61 @@ Python的历史大致如下。目前通用的是python3版本。
 
 Python 是高级编程语言，它有一个特点就是能快速的开发。Python 为我们提供了非常完善的基础代码库，覆盖了网络、文件、GUI、数据库、文本等大量内容，被形象地称作“内置电池（batteries included）”。用 Python 开发，许多功能不必从零编写，直接使用现成的即可。而且 Python 还能开发网站，多大型网站就是用 Python 开发的，例如 YouTube、Instagram，还有国内的豆瓣。很多大公司，包括 Google、Yahoo 等，甚至 NASA（美国航空航天局）都大量地使用 Python。
 
+## Python 语言的特点
+
+- 1 ）简单易学
+
+  Python 语言简洁、优雅，相比其他程序语言（比如： Java ， C++ 等）， Python 语言更容易阅读和编写。 Python
+
+  语言使用起来很有趣，且该语言更多的是专注于解决方案而不是语法本身。
+
+  初学者学 Python ，不但入门容易，而且将来深入下去，可以编写那些非常非常复杂的程序。
+
+- 2 ）开源且免费
+
+  Python 是一门开源的编程语言，可以免费使用，甚至可以用于商业用途。当然，你也可以提交相关贡献代码。Python 有一个庞大的社区来维护并保持快速发展。
+
+- 3 ）可移植性
+
+  Python 是跨平台的编程语言，它可以运行在 windows 、 Mac 和各种 Linux/Unix 系统上。也就是说，假设在windows 系统下编写的 Python 程序，在 Mac 或 Linux 系统下也是可以运行的。
+
+- 4 ）开发效率非常高
+
+  Python 有非常强大的第三方库，基本上你想通过计算机实现任何功能， Python 官方库里都有相应的模块进行支持，直接下载调用后，在基础库的基础上再进行开发，大大降低开发周期，避免重复造轮子。
+
+- 5 ）高级语言
+
+  当你用 Python 语言编写程序的时候，你无需考虑诸如如何管理你的程序使用的内存以及垃圾回收一类的底层细节。
+
+- 6 ）可扩展性
+
+  如果你需要你的一段关键代码运行得更快或者希望某些算法不公开，你可以把你的部分程序用 C 或 C++ 编写，然后在你的 Python 程序中使用它们。
+
+- 7 ）可嵌入性
+
+  你可以把 Python 代码嵌入你的 C/C++ 程序，从而向你的程序用户提供脚本功能。
+
+- 8 ）面向对象
+
+  Python 中的一切都是对象。面向对象编程（ OOP ）可以帮助您直观地解决复杂的问题。有了 OOP ，你可以通过创建对象把这些复杂的问题划分成更小的集合。
+
 当然，任何编程语言有有点，也有缺点，Python 也不例外。那么 Python 有哪些缺点呢？
 
 - 第一个缺点就是运行速度慢，和C程序相比非常慢，因为Python是解释型语言，你的代码在执行时会一行一行地翻译成CPU能理解的机器码，这个翻译过程非常耗时，所以很慢。而C程序是运行前直接编译成CPU能执行的机器码，所以非常快。
 - 第二个缺点就是代码不能加密。如果要发布你的 Python 程序，实际上就是发布源代码。像 JAVA , C 这些编译型的语言，都没有这个问题，而解释型的语言，则必须把源码发布出去。
+
+## Python 语言的应用领域
+
+Python 被广泛的应用于诸多领域，比如：
+• 数据科学：数据科学涉及领域很广，涉及到当前火热的人工智能领域。 Python 的数据科学包括数据分析、数据
+可视化、数据挖掘、自然语言处理、机器学习、深度学习等。典型的 Python 库有： Numpy ， Scipy ， Pandas ，Matplotlib ， Seaborn ， Scikit-learn ， tensorflow 等。
+• 云计算：典型应用 ——Python 开发的 OpenStack
+• WEB 开发：众多优秀的 WEB 框架，比如： Django 、 flask 、 tornado
+• 网络爬虫：使用 Python 可以便捷的编写网络爬虫，从网页上爬取相关信息，常用的 Python 库包括： Requests ，BeautifulSoup ， Scrapy 等。
+• 系统运维：运维人员必备， slatstack （系统自动化配置和管理工具）， Ansible （自动化运维工具）
+• 图形界面开发： wxPython 、 PyQT 、 TKinter
+
+
 
 # 2. Python的安装
 
@@ -598,17 +652,20 @@ list(tuple1)
 一个列表中的元素又是一个列表，那么这就是列表的嵌套
 
 ```python
-    schoolNames = [['北京大学','清华大学'],
-                    ['南开大学','天津大学','天津师范大学'],
-                    ['山东大学','中国海洋大学']]
+schoolNames = [['北京大学','清华大学'],
+	['南开大学','天津大学','天津师范大学'],
+	['山东大学','中国海洋大学']]
+#二维列表的索引
+value = schoolNames[1][1]
 ```
 
 ## 3. 访问list
 
 ```python
-a = list[index]  #访问列表的某个元素
-
-b= list[start:end]  #访问列表的[start，end）元素
+a = list[n]  #访问列表的第n个元素
+a = list[-n]  #访问列表的倒数第n个元素
+# list的切片
+b= list[start:end:step]  #访问列表的[start，end）元素
 ```
 
 
@@ -619,9 +676,7 @@ b= list[start:end]  #访问列表的[start，end）元素
 list[index] = obj       # 重新赋值
 list.append(obj)        #在列表末尾添加新的对象                                      
 list.extend(seq)        #在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表） 
-list.insert(index, obj) #将对象插入列表                                            
-
-
+list.insert(index, obj) #将对象插入列表指定位置                                           
 ```
 
 
@@ -631,7 +686,7 @@ list.insert(index, obj) #将对象插入列表
 ```python
 list.pop(obj=list[-1])  #移除列表中的一个元素（默认最后一个元素），并且返回该元素的值
 del list[index]  		#删除列表的某个元素                 
-list.remove(obj)  		#根据元素的值进行删除,并且不返回任何值 
+list.remove(obj)  		#根据元素的值删除第一个匹配项,并且不返回任何值 
 ```
 
 
@@ -661,6 +716,40 @@ list.remove(obj)  		#根据元素的值进行删除,并且不返回任何值
 | list.index(obj)   | 从列表中找出某个值第一个匹配项的索引位置                     |
 | list.reverse()    | 反向列表中元素                                               |
 | list.sort([func]) | 按特定顺序重新排列，默认为由小到大，参数reverse=True可改为倒序，由大到小。 |
+
+## 8. 列表推导式
+
+列表推导式的一般语法结构：
+
+```python
+new_list = [x for x in iterable]
+
+str_list = [x.lower() for x in "Lemon"]
+
+list_list = [x**2 for x in [1,2,3,4]]
+
+tuple_list = [x+2 for x in (1,2,3,4)]
+
+ge_list = [x for x in range(8)]
+
+两层 for 循环的列表推导式
+[x**2+y for x in range(5) for y in range(4,7)]
+
+使用两个或多个变量来生成 list ，结合字典的使用，举例如下：
+d = {'x': '1', 'y':'2', 'z':'4'}
+d_list = [k+'='+v for k,v in d.items()]
+
+列表推导式中还可以引入 if 条件语句，如下：
+if_list = [x**2 for x in range(10) if x%2==0]
+
+包含 if-else 语句的列表推导式
+[x**2 if x%2==0 else x+2 for x in range(10)]
+
+包含两个 if 语句的列表推导式
+[x**2 for x in range(10) if x%2==0 if x%3==0]
+
+
+```
 
 
 
@@ -1345,9 +1434,25 @@ print(x.r, x.i)   # 输出结果：3.0 -4.5
 
 self代表类的实例，而非类
 
+## 构造方法
+
+`__init__()`
+
+类中的__init__（）方法是一个非常特殊的方法，用来创建和初始化实例变量，这种方法就是“构造方法”。在定义__init__（）方法时，它的第1个参数应该是self，之后的参数用来初始化实例变量。调用构造方法时不需要传入self参数。
+
+```py
+class Vector:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+```
+
 
 
 ## 实例方法
+
+定义：第一个参数必须是实例对象，该参数名一般约定为“self”，通过它来传递实例的属性和方法（也可以传类的属性和方法）；
+调用：只能由实例对象调用。
 
 ```python
 class people:
@@ -1376,21 +1481,6 @@ p.speak()
 
 
 
-## 构造方法
-
-`__init__()`
-
-类中的__init__（）方法是一个非常特殊的方法，用来创建和初始化实例变量，这种方法就是“构造方法”。在定义__init__（）方法时，它的第1个参数应该是self，之后的参数用来初始化实例变量。调用构造方法时不需要传入self参数。
-
-```py
-class Vector:
-    def __init__(self, a, b):
-        self.a = a
-        self.b = b
-```
-
-
-
 ## 类方法
 
 类方法与类变量类似，属于类，不属于个体实例。在定义类方法时，它的第1个参数不是self，而是类本身。
@@ -1400,6 +1490,18 @@ class Vector:
 <img src="assets/image-20221108224410474.png" alt="image-20221108224410474" style="zoom: 50%;" />
 
 
+
+## 静态方法
+
+定义：使用装饰器`@staticmethod`。参数随意，没有“self”和“cls”参数，但是方法体中不能使用类或实例的任何属性和方法；
+调用：实例对象和类对象都可以调用。
+
+不能使用类或实例的属性（或方法）
+
+静态方法并不是真正意义上的类方法，它只是一个被放到类里的函数而已。
+尽管如此，仍然称之为方法，但它没有关于 class 或 object 的任何信息，所以它实际上是一个独立的函数，只是被放到了类里，静态方法既没有 self 也没有 cls 参数 。（静态方法可以访问类属性，例如 Book.TYPES)
+
+静态方法通常用于组织代码，例如如果认为将某个函数放到某个类里，整体代码会因此更符合逻辑，于是可以将这个函数变成该类的静态方法。所以如果需要在类里放一个函数进去，此函数不会用到任何关于类或实例的信息，那么就可以用 @staticmethod 对其进行装饰。
 
 ## 继承
 
