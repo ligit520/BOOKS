@@ -1,3 +1,7 @@
+
+
+
+
 # 目录
 
 [toc]
@@ -1039,9 +1043,9 @@ set1.clear()：清除集合。
 ```python
 list=[1,2,3,4]
 >>> it = iter(list)   # 创建迭代器对象
->>> **print** (next(it))  # 输出迭代器的下一个元素
+>>> print(next(it))  # 输出迭代器的下一个元素
 1
->>> **print** (next(it))
+>>> print(next(it))
 2
 
 #使用常规for语句进行遍历
@@ -1184,6 +1188,8 @@ python 中一切都是对象，严格意义我们不能说值传递还是引用�
 
 使用关键字参数**允许函数调用时参数的顺序与声明时不一致**，因为 Python 解释器能够用参数名匹配参数值。
 
+位置参数必须在关键字参数之前
+
 ```python
 def printinfo( name, age ):  
     "打印任何传入的字符串"   
@@ -1196,6 +1202,8 @@ printinfo( age=50, name="runoob" )
 
 
 ### 默认参数
+
+把默认参数放到后面
 
 ```python
 def printinfo( name, age = 35 ):   
@@ -1212,7 +1220,7 @@ print ("------------------------") printinfo( name="runoob" )
 
 ### 不定长参数
 
-- 加了星号 ***** 的参数会以元组(tuple)的形式导入，存放所有未命名的变量参数。
+- 加了星号 ***** 的参数会以**元组(tuple)**的形式导入，存放所有未命名的变量参数。
 
 如果在函数调用时没有指定参数，它就是一个空元组。我们也可以不向函数传递未命名的变量。
 
@@ -1225,7 +1233,7 @@ def functionname([formal_args,] *var_args_tuple ):
 
 
 
-- 加了两个星号 ***\*** 的参数会以字典的形式导入，基本语法如下：
+- 加了两个星号 ***\*** 的参数会以**字典**的形式导入，基本语法如下：
 
 
 ```python
@@ -1233,6 +1241,8 @@ def functionname([formal_args,] **var_args_dict ):
    "函数_文档字符串"
    function_suite
    return [expression]
+
+functionname(a=1,b=2,c=3)
 ```
 
 
@@ -1248,15 +1258,28 @@ def f(a,b,*,c):
 
 
 
+声明函数时，参数中星号 ***** 可以单独出现，例如:
+
+```python
+def f(a,b,/,c):
+    return a+b+c
+```
+
+如果单独出现星号/，则星号 **/** 前的参数必须用位置参数传入
+
 ### 变量的作用域
 
-局部变量
+局部变量：函数内部定义的变量
 
-全局变量
+全局变量：函数外部定义的变量
 
 可以使用global x，将函数提升为全局变量
 
+函数中局部变量能够覆盖同名的全局变量
 
+nonelocal：声明的变量不是局部变量,也不是全局变量,而是外部嵌套函数内的变量
+
+**LEGB**
 
 ## 过滤函数filter
 
@@ -1370,6 +1393,81 @@ print(data3)
 >>>[55, 60]
 >>>[20, 40, 66, 88, 110, 120]
 ```
+
+
+
+## 闭包
+
+```py
+#返回函数funB
+
+def funA():
+    a = 100
+    def funB():
+        print(a)
+    return funB
+
+#第1种
+funA()()
+
+#第2种
+funny = funA()
+funny()
+
+>> 100
+```
+
+
+
+```py
+def power(exp):
+    def exp_of(base):
+        return base ** exp
+    return exp_of
+
+square = power(2)
+cube = power(3)
+
+print(square(5))
+>> 25
+
+print(cube(3))
+>>27
+```
+
+
+
+## 装饰器
+
+装饰器本质上是一个Python函数(其实就是闭包)，它可以让其他函数在不需要做任何代码变动的前提下增加额外功能，装饰器的返回值也是一个函数对象。装饰器用于有以下场景，比如:插入日志、性能测试、事务处理、缓存、权限校验等场景。
+
+使用：@
+
+**无参装饰器模板**
+
+```python
+def outter(func):
+    def wrapper(*args, **kwargs):
+		res = func(*args, **kwargs)
+		return res
+
+return wrapper
+```
+
+```python
+def deractor(args):
+	def deco(func):
+    	def wrapper(*args,**kwargs):
+        编写基于文件的认证,认证通过则执行res=func(*args,**kwargs),并返回res
+   		return wrapper
+    return deco
+```
+
+
+
+## 递归
+
+函数自己调用自己
 
 
 
