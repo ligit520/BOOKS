@@ -131,6 +131,27 @@ python hello.py
 
   -- ’‘’
 
+# 类型提示
+
+增加代码的可读性
+
+```python
+def get_full_name(first_name: str="hello", last_name: str="python")->str:
+    full_name = first_name.title() + " " + last_name.title()
+    return full_name
+
+items: List[str]
+items_t: Tuple[int, int, str], 
+items_s: Set[bytes]
+prices: Dict[str, float]
+```
+
+推荐使用：mypy 检查代码类型是否存在错误
+
+安装：pip install mypy
+
+
+
 # 5. Python 中的变量 #
 
 ## 1. 变量的创建和赋值 ##
@@ -1067,8 +1088,6 @@ for x in it:
 
 调用一个生成器函数，返回的是一个迭代器对象。
 
-
-
 ```python
 import sys  
 def fibonacci(n): # 生成器函数 - 斐波那契    
@@ -1076,7 +1095,7 @@ def fibonacci(n): # 生成器函数 - 斐波那契
     while True:        
         if (counter > n):             
             return       
-        yield a        
+        yield a #输出a的值       
         a, b = b, a + b        
         counter += 1 
 f = fibonacci(10) # f 是一个迭代器，由生成器返回生成  
@@ -1089,6 +1108,14 @@ while True:
 #执行以上程序，输出结果如下：
 >>> 0 1 1 2 3 5 8 13 21 34 55
 ```
+
+1. yield 把函数变成了一个生成器。
+2. 生成器函数的执行过程看起来就是不断地 执行->中断->执行->中断 的过程。
+3. 一开始，调用生成器函数的时候，函数不会立即执行，而是返回一个生成器对象；
+4. 然后，当我们使用 next() 作用于它的时候，它开始执行，遇到 yield 语句的时候，执行被中断，并返回当前的迭代值，要注意的是，此刻会记住中断的位置和所有的数 据，也就是执行时的上下文环境被保留起来；
+5. 当再次使用 next() 的时候，从原来中断的地方继续执行，直至遇到 yield ，如果没有 yield ，则抛出异常。
+
+
 
 ### StopIteration
 
@@ -1377,8 +1404,6 @@ print ("相加后的值为 : ", sum( 20, 20 ))
 
 我们可以将匿名函数封装在一个函数内，这样可以使用同样的代码来创建多个匿名函数。
 
-
-
 ```python
 data1 = [10,20,33,44,55,60]
 
@@ -1397,6 +1422,8 @@ print(data3)
 
 
 ## 闭包
+
+在一些语言中，在函数中可以（嵌套）定义另一个函数时，如果内部的函数引用了外部的函数的变量，则可能产生闭包。闭包可以用来在一个函数与一组“私有”变量之间创建关联关系。在给定函数被多次调用的过程中，这些私有变量能够保持其持久性。
 
 ```py
 #返回函数funB
@@ -1439,9 +1466,9 @@ print(cube(3))
 
 ## 装饰器
 
-装饰器本质上是一个Python函数(其实就是闭包)，它可以让其他函数在不需要做任何代码变动的前提下增加额外功能，装饰器的返回值也是一个函数对象。装饰器用于有以下场景，比如:插入日志、性能测试、事务处理、缓存、权限校验等场景。
+装饰器本质上是一个Python函数(其实就是闭包)，它可以让其他函数在不需要做任何代码变动的前提下增加额外功能，装饰器的返回值也是一个函数对象。装饰器用于有以下场景，比如:**插入日志、性能测试、事务处理、缓存、权限校验**等场景。
 
-使用：@
+**使用：@**
 
 **无参装饰器模板**
 
@@ -1452,7 +1479,49 @@ def outter(func):
 		return res
 
 return wrapper
+
+# 为函数添加一个统计运行时长的功能以及日志记录功能
+import time
+import threading
+
+def how_much_time(func):
+    print("1 how_much_time函数开始了")
+    def inner():
+        t_start = time.time()
+        func()
+        t_end = time.time()
+        print("5 一共花费了{0}秒时间".format(t_end - t_start, ))
+    return inner
+
+def mylog(func):
+    print("2 mylog函数开始了")
+    def inner_1():
+        print("3 start")
+        func()
+        print("6 end")
+    return inner_1
+
+@mylog
+@how_much_time
+# 等价于mylog(how_much_time(sleep_5s))
+def sleep_2s():
+    time.sleep(2)
+    print("4 %d秒结束了" % (2,))
+
+if __name__ == '__main__':
+    sleep_2s()
+
+# 1 how_much_time函数开始了
+# 2 mylog函数开始了
+# 3 start
+# 4 2秒结束了
+# 5 一共花费了2.0135462284088135秒时间
+# 6 end
 ```
+
+
+
+**有参装饰器模板**
 
 ```python
 def deractor(args):
@@ -1461,6 +1530,26 @@ def deractor(args):
         编写基于文件的认证,认证通过则执行res=func(*args,**kwargs),并返回res
    		return wrapper
     return deco
+
+import time
+def logger(msg):
+    def time_master(func):
+        def call_func():
+            start = time.time()
+            func()
+            stop = time.time()
+            print(f'[{msg}]一共耗费了{(stop-start):.2f}')
+        return call_func
+    return time_master
+
+def funA():
+    time.sleep(1)
+    print('正在调用funA')
+
+funA = logger(msg='A')(funA)
+funA()
+# 正在调用funA
+# [A]一共耗费了1.01
 ```
 
 
@@ -1469,7 +1558,68 @@ def deractor(args):
 
 函数自己调用自己
 
+**汉诺塔**
 
+```python
+def hanoi(n, source, destination, spare):
+    if n >= 1:
+        # Step 1: Move the n - 1 disks from the source peg 
+        # to the spare peg, using the destination as a spare
+        hanoi(n - 1, source, spare, destination)
+
+        # Step 2: Move the nth disk from the source peg 
+        # to the destination peg 
+        print("Move disk", n, "from peg", source, "to peg", destination)
+
+        # Step 3: Move the n - 1 disks from the spare peg 
+        # to the destination peg, using the source as a spare
+        hanoi(n - 1, spare, destination, source)
+
+    # Driver code
+n = int(input('请输入汉诺塔的层数：'))
+hanoi(n, 'A', 'C', 'B')
+
+# A, B and C are the source, spare and destination pegs 
+# respectively. 
+
+```
+
+## 高阶函数
+
+装饰器、map、filter、min、max、
+
+**functools**库
+
+```python
+import functools
+def add(x,y):
+    return x+y
+print(functools.reduce(add,[1,2,3,4,5]))
+```
+
+## 偏函数
+
+```
+import functools
+int2 = functools.partial(int, base=2)
+print(int2('1000000'))
+print(int2('1010101'))
+
+>>>64
+>>>85
+```
+
+
+
+## @warps
+
+1，**name**:获取函数名称并显示
+2，**doc**:获取文档说明并显示
+
+Python 装饰器（decorator）在实现的时候，被装饰后的函数其实已经是另外一个函数了（函数名等函数属性会发生改变）
+@ 符号是装饰器的语法糖。它放在一个函数开始定义的地方（头顶），和这个函数绑定在一起。
+当我们调用这个函数的时候，会先将这个函数做为参数传入它头顶，即装饰器里
+当添加上装饰器@warps后，m.__name__返回的时m()的函数名称，而不是装饰器warpps的函数名称。
 
 # 类与对象
 
@@ -1862,6 +2012,71 @@ print(a)
 
 为增强程序的健壮性，我们也需要考虑异常处理方面的内容。例如，在读取文件时需要考虑文件不存在、文件格式不正确等异常情况。
 
+```python
+def testRaise(number):
+    if number < 1:
+        raise ValueError('Invalid value')  # 或者 raise ValueError,'Invalid value'
+testRaise(0)
+```
+
+
+
+当你捕获到异常之后又希望再次的触发异常只需要使用不带任何参数的raise关键字
+
+```python
+import os
+try:
+    openFile = open('notExistsFile.txt','r')
+    fileContent = openFile.readlines()
+except IOError:
+    print 'File not Exists'
+    if not os.path.exists('notExistsFile.txt'):
+        raise
+except:
+    print 'process exception'
+```
+
+## assert语句触发异常
+
+assert语句根据后面的表达式的真假来控制程序流。若为True，则往下执行。若为False，则中断程序并调用默认的异常处理器，同时输出指定的提示信息。 格式：
+
+assert expression,'information'
+
+```python
+def testAssert(x):
+    assert x < 1,'Invalid value'
+testAssert(1)
+print 'Valid value'
+```
+
+
+
+```python
+try:
+    可能触发异常的语句块
+except [exceptionType]:
+    捕获可能触发的异常[可以指定处理的异常类型]
+except [exceptionType][,date]:
+    捕获异常并获取附加数据
+except:
+    没有指定异常类型，捕获任意异常
+else：
+    没有触发异常时，执行的语句块
+```
+
+```python
+try:
+    try:
+        openFile = open('notExistsFile.txt','r')
+        fileContent = openFile.readlines()
+    except IOError:
+        print 'File not Exists'      #执行
+except:
+    print 'process exception'        #不执行 
+else: 
+    print 'Reading the file'         #执行
+```
+
 
 
 # imort
@@ -1876,5 +2091,49 @@ print(a)
 
 
 
+# 文件操作
 
+```python
+open("test.txt",'w') # 会创建文件"test.txt,如果文件存在会覆盖
+
+# 使用with不用写f.close()
+with open("test.txt",'w+') as f:
+    print(f.readable())
+    print(f.writable())
+    f.write("hello world\n") #写入一行
+    f.writelines("hello world1") #写入一行
+    print(f.tell())
+    f.seek(0) # 指针移到文件开头
+
+    #打印每一行
+    for each in f:
+        print(each)
+
+```
+
+![image-20230213203941355](assets/image-20230213203941355.png)
+
+![image-20230213203800096](assets/image-20230213203800096.png)
+
+
+
+# 路径处理
+
+```python
+from pathlib import Path
+print(Path.cwd())
+p = Path('D:\code\github\Python-ly') # 'D:\code\github\Python-ly'
+q = p / 'test.txt'
+print(q) # D:\code\github\Python-ly\test.txt
+
+print(p.is_dir())   #True 是否是目录
+print(p.exists())   #True 是否存在目录
+print(q.exists())   #True 是否存在文件
+
+print(q.is_file()) #存在文件为True
+print(p.name) # 获取路径的最后一个部分 Python-ly
+print(q.name) # 文件完整的名 test.txt
+print(q.suffix) # 文件后缀.txt
+print(q.stem)  #不带后缀的文件名test
+```
 
