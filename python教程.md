@@ -632,8 +632,6 @@ for index, item in enumerate(sequence):
     process(index, item)
 ```
 
-range
-
 ### range()
 
 如果你需要遍历数字序列，可以使用内置range(start,end,step)函数。它会生成数列
@@ -1599,6 +1597,8 @@ print(functools.reduce(add,[1,2,3,4,5]))
 
 ## 偏函数
 
+把一个函数的某些参数给固定住，返回一个新的函数
+
 ```
 import functools
 int2 = functools.partial(int, base=2)
@@ -1619,7 +1619,18 @@ print(int2('1010101'))
 Python 装饰器（decorator）在实现的时候，被装饰后的函数其实已经是另外一个函数了（函数名等函数属性会发生改变）
 @ 符号是装饰器的语法糖。它放在一个函数开始定义的地方（头顶），和这个函数绑定在一起。
 当我们调用这个函数的时候，会先将这个函数做为参数传入它头顶，即装饰器里
-当添加上装饰器@warps后，m.__name__返回的时m()的函数名称，而不是装饰器warpps的函数名称。
+当添加上装饰器@warps后，m.__name__返回的是m()的函数名称，而不是装饰器warpps的函数名称。
+
+## itertools.product
+
+```
+import itertools
+aa = itertools.product(['西藏','瀑布','湖水'], ['月色','星空'])
+bb = list(aa)   #按照顺序生成笛卡尔积，repeat默认是1
+print(bb)
+```
+
+![image-20230328171737245](assets/image-20230328171737245.png)
 
 # 类与对象
 
@@ -2079,7 +2090,7 @@ else:
 
 
 
-# imort
+# import
 
 在Python中一个模块就是一个文件，模块是保存代码的最小单位，在模块中可以声明变量、函数、属性和类等Python代码元素。
 
@@ -2088,8 +2099,6 @@ else:
 - from＜模块名＞import＜代码元素＞：通过这种方式会导入m2中的x变量，在访问时不需要加前缀“m2.”
 
 - from＜模块名＞import＜代码元素＞as＜代码元素别名＞：与②类似，在当前m1模块的代码元素（x变量）与要导入的m2模块的代码元素（x变量）名称有冲突时，可以给要导入的代码元素（m2中的x）一个别名x2
-
-
 
 # 文件操作
 
@@ -2137,3 +2146,55 @@ print(q.suffix) # 文件后缀.txt
 print(q.stem)  #不带后缀的文件名test
 ```
 
+# contextmanager
+
+1. contextmanager 来自 contextlib 包，通常使用时要进行导入：
+
+```python
+from contextlib import contextmanager
+```
+
+2. contextmanager 作为上下文管理器，主要的作用就是在执行某些逻辑之前，做一些预备工作；执行完逻辑代码之后，做一些收尾和善后 工作。
+
+3. 首先我们自己实现一个上下文管理器类，用于讲述一下基础原理。
+
+```python
+# -*- coding:utf-8 -*-
+class MyNewClass(object):
+    #执行with语句时，先执行 __enter__方法，并将返回值复制给 with 后的变量，比如new_class
+    def __enter__(self):
+        print("Before exect my_function.")
+        return self
+
+    # with语句执行完成后，执行 __exit__ 方法，进行收尾、善后（异常处理）等工作，注意*args接收三个参数（exc_type, exc_val, exc_tb）
+    # exc_type ：若无异常则为 None; 若有异常则为异常类型。
+    # exc_val ：若无异常则为 None, 若有异常则为异常信息描述。
+    # exc_tb ：若无异常则为 None, 若有异常则为异常详细追溯信息（TraceBack）。
+    def __exit__(self, *args):
+        print("After exect my_function.")
+
+    def my_function(self):
+        print("Exect my_function.")
+
+
+with MyNewClass() as new_class:
+    new_class.my_function()
+    x = 1/0
+```
+
+4. 了解了3之后，我们可以通过 contextmanager 上下文管理器来轻松实现。
+
+```
+from contextlib import contextmanager
+
+@contextmanager
+def test_new_contextmanager():
+    print("Before exect my_function.")  # yield前内容等同于__enter__
+    a=1
+    yield  a # yield后面的变量赋值给as后面的变量
+    print("Exect my_function.")  # yield后内容等同于__exit__
+
+with test_new_contextmanager() as new_contextmanager:
+    print(new_contextmanager)
+    print("After exect my_function.")
+```
