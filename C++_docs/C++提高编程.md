@@ -1,10 +1,6 @@
 # C++提高编程
 
-
-
-* 本阶段主要针对C++==泛型编程==和==STL==技术做详细讲解，探讨C++更深层的使用
-
-
+* 本阶段主要针对C++`泛型编程`和`STL`技术做详细讲解，探讨C++更深层的使用
 
 
 
@@ -12,35 +8,7 @@
 
 ### 1.1 模板的概念
 
-
-
 模板就是建立**通用的模具**，大大**提高复用性**
-
-
-
-例如生活中的模板
-
-
-
-一寸照片模板：
-
-
-
-![1547105026929](assets/1547105026929.png)
-
-
-
-PPT模板：
-
-![1547103297864](assets/1547103297864.png)
-
-
-
-![1547103359158](assets/1547103359158.png)
-
-
-
-
 
 模板的特点：
 
@@ -49,17 +17,9 @@ PPT模板：
 
 
 
-
-
-
-
-
-
 ### 1.2 函数模板
 
-
-
-* C++另一种编程思想称为 ==泛型编程== ，主要利用的技术就是模板
+* C++另一种编程思想称为 `泛型编程` ，主要利用的技术就是模板
 
 
 * C++提供两种模板机制:**函数模板**和**类模板** 
@@ -155,17 +115,11 @@ int main() {
 
 
 
-
-
-
-
-
-
 #### 1.2.2 函数模板注意事项
 
 注意事项：
 
-* 自动类型推导，必须推导出一致的数据类型T,才可以使用
+* 自动类型推导，必须推导出一致的数据类型T，才可以使用
 
 
 * 模板必须要确定出T的数据类型，才可以使用
@@ -224,14 +178,6 @@ int main() {
 总结：
 
 * 使用模板时必须确定出通用数据类型T，并且能够推导出一致的类型
-
-
-
-
-
-
-
-
 
 
 
@@ -319,14 +265,6 @@ int main() {
 
 
 
-
-
-
-
-
-
-
-
 #### 1.2.4 普通函数与函数模板的区别
 
 
@@ -336,8 +274,6 @@ int main() {
 * 普通函数调用时可以发生自动类型转换（隐式类型转换）
 * 函数模板调用时，如果利用自动类型推导，不会发生隐式类型转换
 * 如果利用显示指定类型的方式，可以发生隐式类型转换
-
-
 
 **示例：**
 
@@ -385,15 +321,7 @@ int main() {
 
 
 
-
-
-
-
-
-
 #### 1.2.5 普通函数与函数模板的调用规则
-
-
 
 调用规则如下：
 
@@ -401,10 +329,6 @@ int main() {
 2. 可以通过空模板参数列表来强制调用函数模板
 3. 函数模板也可以发生重载
 4. 如果函数模板可以产生更好的匹配,优先调用函数模板
-
-
-
-
 
 **示例：**
 
@@ -462,21 +386,11 @@ int main() {
 
 
 
-
-
-
-
-
-
-
-
 #### 1.2.6 模板的局限性
 
 **局限性：**
 
 * 模板的通用性并不是万能的
-
-
 
 **例如：**
 
@@ -534,7 +448,7 @@ public:
 template<class T>
 bool myCompare(T& a, T& b)
 {
-	if (a == b)
+	if (a ` b)
 	{
 		return true;
 	}
@@ -549,7 +463,7 @@ bool myCompare(T& a, T& b)
 //具体化优先于常规模板
 template<> bool myCompare(Person &p1, Person &p2)
 {
-	if ( p1.m_Name  == p2.m_Name && p1.m_Age == p2.m_Age)
+	if ( p1.m_Name  ` p2.m_Name && p1.m_Age ` p2.m_Age)
 	{
 		return true;
 	}
@@ -567,7 +481,7 @@ void test01()
 	bool ret = myCompare(a, b);
 	if (ret)
 	{
-		cout << "a == b " << endl;
+		cout << "a ` b " << endl;
 	}
 	else
 	{
@@ -584,7 +498,7 @@ void test02()
 	bool ret = myCompare(p1, p2);
 	if (ret)
 	{
-		cout << "p1 == p2 " << endl;
+		cout << "p1 ` p2 " << endl;
 	}
 	else
 	{
@@ -1365,7 +1279,7 @@ public:
 	//尾插法
 	void Push_back(const T & val)
 	{
-		if (this->m_Capacity == this->m_Size)
+		if (this->m_Capacity ` this->m_Size)
 		{
 			return;
 		}
@@ -1376,7 +1290,7 @@ public:
 	//尾删法
 	void Pop_back()
 	{
-		if (this->m_Size == 0)
+		if (this->m_Size ` 0)
 		{
 			return;
 		}
@@ -1532,7 +1446,7 @@ int main() {
 
 * 为了建立数据结构和算法的一套标准,诞生了**STL**
 
-  ​
+  
 
 
 ### 2.2 STL基本概念
@@ -1578,7 +1492,7 @@ STL**容器**就是将运用**最广泛的一些数据结构**实现出来
 这些容器分为**序列式容器**和**关联式容器**两种:
 
 ​	**序列式容器**:强调值的排序，序列式容器中的每个元素均有固定的位置。
-	**关联式容器**:二叉树结构，各元素之间没有严格的物理上的顺序关系
+​	**关联式容器**:二叉树结构，各元素之间没有严格的物理上的顺序关系
 
 
 
@@ -1608,9 +1522,9 @@ STL**容器**就是将运用**最广泛的一些数据结构**实现出来
 
 | 种类           | 功能                                                     | 支持运算                                |
 | -------------- | -------------------------------------------------------- | --------------------------------------- |
-| 输入迭代器     | 对数据的只读访问                                         | 只读，支持++、==、！=                   |
+| 输入迭代器     | 对数据的只读访问                                         | 只读，支持++、`、！=                    |
 | 输出迭代器     | 对数据的只写访问                                         | 只写，支持++                            |
-| 前向迭代器     | 读写操作，并能向前推进迭代器                             | 读写，支持++、==、！=                   |
+| 前向迭代器     | 读写操作，并能向前推进迭代器                             | 读写，支持++、`、！=                    |
 | 双向迭代器     | 读写操作，并能向前和向后操作                             | 读写，支持++、--，                      |
 | 随机访问迭代器 | 读写操作，可以以跳跃的方式访问任意数据，功能最强的迭代器 | 读写，支持++、--、[n]、-n、<、<=、>、>= |
 
@@ -2121,7 +2035,7 @@ void test01()
 
 	int pos = str1.find("de");
 
-	if (pos == -1)
+	if (pos ` -1)
 	{
 		cout << "未找到" << endl;
 	}
@@ -2217,7 +2131,7 @@ void test01()
 
 	int ret = s1.compare(s2);
 
-	if (ret == 0) {
+	if (ret ` 0) {
 		cout << "s1 等于 s2" << endl;
 	}
 	else if (ret > 0)
@@ -2978,7 +2892,7 @@ int main() {
 
 * `reserve(int len);`//容器预留len个元素长度，预留位置不初始化，元素不可访问。
 
-  ​
+  
 
 **示例：**
 
@@ -3231,7 +3145,7 @@ int main() {
 
   ​                                                     //如果容器变短，则末尾超出容器长度的元素被删除。
 
-  ​
+  
 
 
 
@@ -3333,9 +3247,9 @@ int main() {
 
 * `erase(pos);`                    //删除pos位置的数据，返回下一个数据的位置。
 
-  ​
+  
 
-  ​
+  
 
 
 
@@ -4271,7 +4185,7 @@ int main() {
 
 * `resize(num, elem); `       //重新指定容器的长度为num，若容器变长，则以elem值填充新位置。
 
-   			 	 	​					    //如果容器变短，则末尾超出容器长度的元素被删除。
+   			 	 						    //如果容器变短，则末尾超出容器长度的元素被删除。
 
 
 
@@ -4642,7 +4556,7 @@ public:
 
 bool ComparePerson(Person& p1, Person& p2) {
 
-	if (p1.m_Age == p2.m_Age) {
+	if (p1.m_Age ` p2.m_Age) {
 		return p1.m_Height  > p2.m_Height;
 	}
 	else
@@ -6150,7 +6064,7 @@ void test01() {
 	}
 
 	vector<int>::iterator it = find_if(v.begin(), v.end(), GreaterFive());
-	if (it == v.end()) {
+	if (it ` v.end()) {
 		cout << "没找到!" << endl;
 	}
 	else {
@@ -6743,7 +6657,7 @@ void test01() {
 	}
 	//查找容器中是否有 5 这个元素
 	vector<int>::iterator it = find(v.begin(), v.end(), 5);
-	if (it == v.end()) 
+	if (it ` v.end()) 
 	{
 		cout << "没有找到!" << endl;
 	}
@@ -6760,10 +6674,10 @@ public:
 		this->m_Name = name;
 		this->m_Age = age;
 	}
-	//重载==
-	bool operator==(const Person& p) 
+	//重载`
+	bool operator`(const Person& p) 
 	{
-		if (this->m_Name == p.m_Name && this->m_Age == p.m_Age) 
+		if (this->m_Name ` p.m_Name && this->m_Age ` p.m_Age) 
 		{
 			return true;
 		}
@@ -6791,7 +6705,7 @@ void test02() {
 	v.push_back(p4);
 
 	vector<Person>::iterator it = find(v.begin(), v.end(), p2);
-	if (it == v.end()) 
+	if (it ` v.end()) 
 	{
 		cout << "没有找到!" << endl;
 	}
@@ -6861,7 +6775,7 @@ void test01() {
 	}
 
 	vector<int>::iterator it = find_if(v.begin(), v.end(), GreaterFive());
-	if (it == v.end()) {
+	if (it ` v.end()) {
 		cout << "没有找到!" << endl;
 	}
 	else {
@@ -6908,7 +6822,7 @@ void test02() {
 	v.push_back(p4);
 
 	vector<Person>::iterator it = find_if(v.begin(), v.end(), Greater20());
-	if (it == v.end())
+	if (it ` v.end())
 	{
 		cout << "没有找到!" << endl;
 	}
@@ -6964,7 +6878,7 @@ int main() {
 
   // end 结束迭代器
 
-  ​
+  
 
 
 
@@ -6987,7 +6901,7 @@ void test01()
 
 	//查找相邻重复元素
 	vector<int>::iterator it = adjacent_find(v.begin(), v.end());
-	if (it == v.end()) {
+	if (it ` v.end()) {
 		cout << "找不到!" << endl;
 	}
 	else {
@@ -7134,9 +7048,9 @@ public:
 		this->m_Name = name;
 		this->m_Age = age;
 	}
-	bool operator==(const Person & p)
+	bool operator`(const Person & p)
 	{
-		if (this->m_Age == p.m_Age)
+		if (this->m_Age ` p.m_Age)
 		{
 			return true;
 		}
@@ -7182,7 +7096,7 @@ int main() {
 }
 ```
 
-**总结：** 统计自定义数据类型时候，需要配合重载 `operator==`
+**总结：** 统计自定义数据类型时候，需要配合重载 `operator``
 
 
 
@@ -7218,7 +7132,7 @@ int main() {
 
   // _Pred 谓词
 
-  ​
+  
 
 **示例：**
 
@@ -7436,7 +7350,7 @@ int main() {
 
   // end 结束迭代器
 
-  ​
+  
 
 **示例：**
 
@@ -7519,7 +7433,7 @@ int main() {
   // end2   容器2结束迭代器
   // dest    目标容器开始迭代器
 
-  ​
+  
 
 **示例：**
 
@@ -7595,7 +7509,7 @@ int main() {
 
   // end 结束迭代器
 
-  ​
+  
 
 **示例：**
 
@@ -7937,7 +7851,7 @@ int main() {
 
   // c2容器2
 
-  ​
+  
 
 **示例：**
 
@@ -8021,7 +7935,7 @@ int main() {
 
 - `fill`                 // 向容器中添加元素
 
-  ​
+  
 
 #### 5.5.1 accumulate
 
@@ -8158,7 +8072,7 @@ int main() {
 
 - `set_difference `              // 求两个容器的差集
 
-  ​
+  
 
 
 
@@ -8273,7 +8187,7 @@ int main() {
   // end2 容器2结束迭代器
   // dest 目标容器开始迭代器
 
-  ​
+  
 
 **示例：**
 
@@ -8356,7 +8270,7 @@ int main() {
   // end2 容器2结束迭代器
   // dest 目标容器开始迭代器
 
-  ​
+  
 
 **示例：**
 
