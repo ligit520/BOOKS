@@ -1,6 +1,10 @@
 # C++提高编程
 
+
+
 * 本阶段主要针对C++`泛型编程`和`STL`技术做详细讲解，探讨C++更深层的使用
+
+
 
 
 
@@ -8,9 +12,37 @@
 
 ### 1.1 模板的概念
 
+
+
 模板就是建立**通用的模具**，大大**提高复用性**
 
-模板的特点：
+
+
+例如生活中的模板
+
+
+
+一寸照片模板：
+
+
+
+![1547105026929](assets/1547105026929.png)
+
+
+
+PPT模板：
+
+![1547103297864](assets/1547103297864.png)
+
+
+
+![1547103359158](assets/1547103359158.png)
+
+
+
+
+
+**模板的特点：**
 
 * 模板不可以直接使用，它只是一个框架
 * 模板的通用并不是万能的
@@ -28,7 +60,7 @@
 
 #### 1.2.1 函数模板语法
 
-函数模板作用：
+**函数模板作用：**
 
 建立一个通用函数，其函数返回值类型和形参类型可以不具体制定，用一个**虚拟的类型**来代表。
 
@@ -117,9 +149,9 @@ int main() {
 
 #### 1.2.2 函数模板注意事项
 
-注意事项：
+**注意事项：**
 
-* 自动类型推导，必须推导出一致的数据类型T，才可以使用
+* 自动类型推导，必须推导出一致的数据类型T,才可以使用
 
 
 * 模板必须要确定出T的数据类型，才可以使用
@@ -178,6 +210,8 @@ int main() {
 总结：
 
 * 使用模板时必须确定出通用数据类型T，并且能够推导出一致的类型
+
+
 
 
 
@@ -265,6 +299,8 @@ int main() {
 
 
 
+
+
 #### 1.2.4 普通函数与函数模板的区别
 
 
@@ -274,6 +310,8 @@ int main() {
 * 普通函数调用时可以发生自动类型转换（隐式类型转换）
 * 函数模板调用时，如果利用自动类型推导，不会发生隐式类型转换
 * 如果利用显示指定类型的方式，可以发生隐式类型转换
+
+
 
 **示例：**
 
@@ -319,9 +357,9 @@ int main() {
 
 
 
-
-
 #### 1.2.5 普通函数与函数模板的调用规则
+
+
 
 调用规则如下：
 
@@ -329,6 +367,10 @@ int main() {
 2. 可以通过空模板参数列表来强制调用函数模板
 3. 函数模板也可以发生重载
 4. 如果函数模板可以产生更好的匹配,优先调用函数模板
+
+
+
+
 
 **示例：**
 
@@ -386,11 +428,17 @@ int main() {
 
 
 
+
+
+
+
 #### 1.2.6 模板的局限性
 
 **局限性：**
 
 * 模板的通用性并不是万能的
+
+
 
 **例如：**
 
@@ -448,7 +496,7 @@ public:
 template<class T>
 bool myCompare(T& a, T& b)
 {
-	if (a ` b)
+	if (a == b)
 	{
 		return true;
 	}
@@ -463,7 +511,7 @@ bool myCompare(T& a, T& b)
 //具体化优先于常规模板
 template<> bool myCompare(Person &p1, Person &p2)
 {
-	if ( p1.m_Name  ` p2.m_Name && p1.m_Age ` p2.m_Age)
+	if ( p1.m_Name  == p2.m_Name && p1.m_Age == p2.m_Age)
 	{
 		return true;
 	}
@@ -481,7 +529,7 @@ void test01()
 	bool ret = myCompare(a, b);
 	if (ret)
 	{
-		cout << "a ` b " << endl;
+		cout << "a == b " << endl;
 	}
 	else
 	{
@@ -498,7 +546,7 @@ void test02()
 	bool ret = myCompare(p1, p2);
 	if (ret)
 	{
-		cout << "p1 ` p2 " << endl;
+		cout << "p1 == p2 " << endl;
 	}
 	else
 	{
@@ -522,10 +570,6 @@ int main() {
 
 * 利用具体化的模板，可以解决自定义类型的通用化
 * 学习模板并不是为了写模板，而是在STL能够运用系统提供的模板
-
-
-
-
 
 
 
@@ -561,40 +605,42 @@ T    ---   通用的数据类型，名称可以替换，通常为大写字母
 **示例：**
 
 ```C++
+#include <iostream>
 #include <string>
+
+using namespace std;
+
 //类模板
-template<class NameType, class AgeType> 
-class Person
-{
+template<class NameType, class AgeType>
+class Person {
 public:
-	Person(NameType name, AgeType age)
-	{
-		this->mName = name;
-		this->mAge = age;
-	}
-	void showPerson()
-	{
-		cout << "name: " << this->mName << " age: " << this->mAge << endl;
-	}
+    Person(NameType name, AgeType age) {
+        this->mName = name;
+        this->mAge = age;
+    }
+
+    void showPerson() {
+        cout << "name: " << this->mName << " age: " << this->mAge << endl;
+    }
+
 public:
-	NameType mName;
-	AgeType mAge;
+    NameType mName;
+    AgeType mAge;
 };
 
-void test01()
-{
-	// 指定NameType 为string类型，AgeType 为 int类型
-	Person<string, int>P1("孙悟空", 999);
-	P1.showPerson();
+void test01() {
+    // 指定NameType 为string类型，AgeType 为 int类型
+    Person<string, int> P1("孙悟空", 999);
+    P1.showPerson();
 }
 
 int main() {
 
-	test01();
+    test01();
 
-	system("pause");
+//    system("pause");
 
-	return 0;
+    return 0;
 }
 ```
 
@@ -625,57 +671,58 @@ int main() {
 **示例：**
 
 ```C++
+#include <iostream>
 #include <string>
+
+using namespace std;
+
 //类模板
-template<class NameType, class AgeType = int> 
-class Person
-{
+template<class NameType, class AgeType = int>
+class Person {
 public:
-	Person(NameType name, AgeType age)
-	{
-		this->mName = name;
-		this->mAge = age;
-	}
-	void showPerson()
-	{
-		cout << "name: " << this->mName << " age: " << this->mAge << endl;
-	}
+    Person(NameType name, AgeType age) {
+        this->mName = name;
+        this->mAge = age;
+    }
+
+    void showPerson() {
+        cout << "name: " << this->mName << " age: " << this->mAge << endl;
+    }
+
 public:
-	NameType mName;
-	AgeType mAge;
+    NameType mName;
+    AgeType mAge;
 };
 
 //1、类模板没有自动类型推导的使用方式
-void test01()
-{
-	// Person p("孙悟空", 1000); // 错误 类模板使用时候，不可以用自动类型推导
-	Person <string ,int>p("孙悟空", 1000); //必须使用显示指定类型的方式，使用类模板
-	p.showPerson();
+void test01() {
+    // Person p("孙悟空", 1000); // 错误 类模板使用时候，不可以用自动类型推导
+    Person<string, int> p("孙悟空", 1000); //必须使用显示指定类型的方式，使用类模板
+    p.showPerson();
 }
 
 //2、类模板在模板参数列表中可以有默认参数
-void test02()
-{
-	Person <string> p("猪八戒", 999); //类模板中的模板参数列表 可以指定默认参数
-	p.showPerson();
+void test02() {
+    Person<string> p("猪八戒", 999); //类模板中的模板参数列表 可以指定默认参数
+    p.showPerson();
 }
 
 int main() {
 
-	test01();
+    test01();
 
-	test02();
+    test02();
 
-	system("pause");
+    system("pause");
 
-	return 0;
+    return 0;
 }
 ```
 
 总结：
 
 * 类模板使用只能用显示指定类型方式
-* 类模板中的模板参数列表可以有默认参数
+* 类模板中的模板参数列表可以有默认参数template<class NameType, class AgeType = int> 
 
 
 
@@ -1279,7 +1326,7 @@ public:
 	//尾插法
 	void Push_back(const T & val)
 	{
-		if (this->m_Capacity ` this->m_Size)
+		if (this->m_Capacity == this->m_Size)
 		{
 			return;
 		}
@@ -1290,7 +1337,7 @@ public:
 	//尾删法
 	void Pop_back()
 	{
-		if (this->m_Size ` 0)
+		if (this->m_Size == 0)
 		{
 			return;
 		}
