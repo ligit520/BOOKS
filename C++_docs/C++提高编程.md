@@ -2082,7 +2082,7 @@ void test01()
 
 	int pos = str1.find("de");
 
-	if (pos ` -1)
+	if (pos == -1)
 	{
 		cout << "未找到" << endl;
 	}
@@ -2129,16 +2129,6 @@ int main() {
 
 
 
-
-
-
-
-
-
-
-
-
-
 ####    3.1.6 string字符串比较
 
 **功能描述：**
@@ -2172,13 +2162,12 @@ int main() {
 //字符串比较
 void test01()
 {
-
 	string s1 = "hello";
 	string s2 = "aello";
 
 	int ret = s1.compare(s2);
 
-	if (ret ` 0) {
+	if (ret == 0) {
 		cout << "s1 等于 s2" << endl;
 	}
 	else if (ret > 0)
@@ -2210,11 +2199,7 @@ int main() {
 
 #### 3.1.7 string字符存取
 
-
-
 string中单个字符存取方式有两种
-
-
 
 * `char& operator[](int n); `     //通过[]方式取字符
 * `char& at(int n);   `                    //通过at方法获取字符
@@ -2375,8 +2360,6 @@ int main() {
 
 
 ### 3.2 vector容器
-
-
 
 #### 3.2.1 vector基本概念
 
@@ -2619,7 +2602,7 @@ void test01()
 	}
 
 	//resize 重新指定大小 ，若指定的更大，默认用0填充新位置，可以利用重载版本替换默认填充
-	v1.resize(15,10);
+	v1.resize(15,10);//用10填充
 	printVector(v1);
 
 	//resize 重新指定大小 ，若指定的更小，超出部分元素被删除
@@ -2898,7 +2881,7 @@ void test02()
 	cout << "v的大小为：" << v.size() << endl;
 
 	//收缩内存
-	vector<int>(v).swap(v); //匿名对象
+	vector<int>(v).swap(v); //匿名对象自动销毁
 
 	cout << "v的容量为：" << v.capacity() << endl;
 	cout << "v的大小为：" << v.size() << endl;
